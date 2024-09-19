@@ -22,3 +22,13 @@
  *             ¿Qué pasa en Javascript cuando el divisor es cero?
  *
  ***************************************************************************************************************/
+
+let numero1 = new Number(prompt("Introduce un número: "))
+let numero2 = new Number(prompt("Otro: "))
+
+console.log(`La suma de ${numero1} y ${numero2} es: ${numero1 + numero2}`)
+console.log(`La resta de ${numero1} y ${numero2} es: ${numero1 - numero2}`)
+console.log(`El producto de ${numero1} y ${numero2} es: ${numero1 * numero2}`)
+console.log(`La division de ${numero1} entre ${numero2} es: ${numero1 / numero2}`)
+
+/* En javascript al dividir entre 0, el resultado es infinito */

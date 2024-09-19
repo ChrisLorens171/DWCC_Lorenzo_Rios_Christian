@@ -19,3 +19,17 @@
  *             Tu nombre es .... y tienes .... años
  *
  ***************************************************************************************************************/
+let nombre = prompt("Introduce tu nombre: ")
+let edad = prompt("Ahora tu edad: ")
+
+if (isNaN(nombre) == true & isNaN(edad) == false) {
+
+    alert(`Tu nombre es ${nombre} y tienes ${edad} años`)
+    console.log(`Tu nombre es ${nombre} y tienes ${edad} años`)
+
+} else {
+
+    console.log("Datos introducidos incorrectos")
+    
+}
+

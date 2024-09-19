@@ -11,3 +11,6 @@
  *
  ***************************************************************************************************************/
 
+let nombre = prompt("Introduce tu nombre: ")
+
+console.log(`Bienvenido a mi página, ${nombre}`)
