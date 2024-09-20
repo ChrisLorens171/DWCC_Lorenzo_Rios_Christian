@@ -29,8 +29,45 @@
  *
  *         1500 euros invertidos al 4.3% por 6 años cobrando intereses 4 veces al año hacen 1938.84 euros           
  * 
- *   Adicional: Crear una versión que funcione a la inversa: determiunar la cantidad inicial que 
+ *   Adicional: Crear una versión que funcione a la inversa: determinar la cantidad inicial que 
  *              deberíamos invertir para alcanzar un determinado objetivo final
  * 
  ***************************************************************************************************************/
+
+let cantidad = prompt("Cantidad Inicial")
+let interes = prompt("Interés anual")
+let anhos = prompt("Número de años")
+let cuotas = prompt("Número de cuotas")
+let total
+
+function calculoDinero (cantidad, interes, anhos, cuotas) {
+
+    total = (cantidad * Math.pow((1.0 + (interes / 100) / cuotas),(cuotas * anhos)))
+
+    mensaje1 = `${cantidad} euros invertidos al ${interes} %, por ${anhos} años cobrando intereses ${cuotas} veces al año hacen ${Math.round(total * 100) / 100} euros`
+
+    return mensaje1
+
+}
+
+function calculoInverso (interes, anhos, cuotas, total) {
+
+    cantidad = (total / Math.pow((1.0 + (interes / 100) / cuotas),(cuotas * anhos)))
+
+    mensaje2 = `Para obtener ${total} euros es necesario invertir ${Math.round(cantidad * 100) / 100} euros al ${interes} % por ${anhos} años cobrando intereses ${cuotas} veces al año`
+
+    return mensaje2
+}
+
+calculoDinero(cantidad, interes, anhos, cuotas)
+console.log(mensaje1)
+
+total = prompt("Introduce la cantidad que quieres conseguir")
+interes = prompt("Interés anual")
+anhos = prompt("Número de años")
+cuotas = prompt("Número de cuotas")
+
+calculoInverso(interes, anhos, cuotas, total)
+console.log(mensaje2)
+
 

@@ -19,3 +19,64 @@
  *             La edad no puede ser superior a 120
  *
  ***************************************************************************************************************/
+
+let edad = prompt("Introduce tu edad")
+let mensaje1
+let mensaje2
+
+alert(edadIf(edad))
+alert(edadSwitch(edad))
+
+/* Con if */
+
+function edadIf (edad) {
+
+    if (edad > 0 & edad < 30) {
+
+        mensaje1 = ("¡ Ponte a trabajar !")
+
+    } else if (edad > 30 & edad <= 64 ) {
+
+        mensaje1 = ("¡ Que ganas tengo de jubilarme !")
+
+    } else if (edad > 64 & edad < 120) {
+
+        mensaje1 = ("¡ Descansa un poco !")
+
+    } else {
+
+        mensaje1 = ("Debe ser un número entre 0 y 120")
+    }
+    
+    return mensaje1
+}
+
+/* Con Switch */
+
+function edadSwitch (edad) {
+
+    edad = parseInt(edad)
+
+    switch (edad) {
+
+        case (edad > 30):
+            
+            mensaje2 = ("¡ Ponte a trabajar !")
+
+        break
+
+        case (edad > 30 & edad <= 64):
+
+            mensaje2 = ("¡ Que ganas tengo de jubilarme !")
+
+        break
+
+        case (edad > 64 & edad <= 120):
+            
+            mensaje2 = ("¡ Descansa un poco !")
+
+        break
+    }
+
+    return mensaje2
+}

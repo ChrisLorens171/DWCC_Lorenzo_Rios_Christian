@@ -29,6 +29,7 @@ let numero2 = new Number(prompt("Otro: "))
 console.log(`La suma de ${numero1} y ${numero2} es: ${numero1 + numero2}`)
 console.log(`La resta de ${numero1} y ${numero2} es: ${numero1 - numero2}`)
 console.log(`El producto de ${numero1} y ${numero2} es: ${numero1 * numero2}`)
-console.log(`La division de ${numero1} entre ${numero2} es: ${numero1 / numero2}`)
+console.log(`La division de ${numero1} entre ${numero2} es: ${(numero1 / numero2).toFixed(2)}`)
+console.log(`La division de ${numero1} entre ${numero2} es: ${Math.round(numero1 / numero2 * 100) / 100}`)
 
 /* En javascript al dividir entre 0, el resultado es infinito */
