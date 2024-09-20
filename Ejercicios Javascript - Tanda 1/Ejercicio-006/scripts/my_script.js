@@ -55,23 +55,21 @@ function edadIf (edad) {
 
 function edadSwitch (edad) {
 
-    edad = parseInt(edad)
+    switch (true) {
 
-    switch (edad) {
-
-        case (edad > 30):
+        case (edad < 30):
             
             mensaje2 = ("¡ Ponte a trabajar !")
 
         break
 
-        case (edad > 30 & edad <= 64):
+        case (edad > 30 && edad <= 64):
 
             mensaje2 = ("¡ Que ganas tengo de jubilarme !")
 
         break
 
-        case (edad > 64 & edad <= 120):
+        case (edad > 64 && edad <= 120):
             
             mensaje2 = ("¡ Descansa un poco !")
 
