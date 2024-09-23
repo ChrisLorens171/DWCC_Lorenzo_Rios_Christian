@@ -29,3 +29,32 @@
  *  https://openexchangerates.org/
  * 
  ***************************************************************************************************************/
+
+function convertirEuros(monedas, tipoCambio, euros) {
+    let conversiones = [];
+
+    for (let i = 0; i < monedas.length; i++) {
+
+        let conversion = euros * tipoCambio[i]
+
+        conversiones.push ({
+
+            moneda: monedas[i],
+            cantidad: conversion
+
+        })
+    }
+
+    return conversiones;
+}
+
+let euros = prompt("Introduce la cantidad de euros");
+
+let monedas = ["Dólares Americanos", "Libras Esterlinas", "Yenes Japoneses", "Francos Suizos", "Peso Mexicano"];
+let tipoCambio = [1.10, 0.85, 130.5, 1.02, 21,61];
+
+convertirEuros(monedas, tipoCambio, euros).forEach(resultado => {
+
+    console.log(`${euros} euros son ${resultado.cantidad.toFixed(2)} ${resultado.moneda}`);
+
+});

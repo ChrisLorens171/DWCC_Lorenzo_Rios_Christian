@@ -18,3 +18,53 @@
  *   Salida  : El examen se cualifica con un XXX
  *
  ***************************************************************************************************************/
+
+let nota = prompt("Número entero entre 0 y 100 (ambos incluidos): ")
+let mensaje
+
+function darNota (nota) {
+
+    switch (true) {
+
+        case (nota > 0 && nota < 59):
+            
+            mensaje = "F"
+
+        break
+
+        case (nota > 59 && nota <= 69):
+
+            mensaje = "D"
+
+        break
+
+        case (nota > 69 && nota <= 80):
+            
+            mensaje = "C"
+
+        break
+
+        case (nota > 79 && nota <= 90):
+            
+            mensaje = "B"
+
+        break
+
+        case (nota > 90 && nota <= 100):
+            
+            mensaje = "A"
+
+        break
+
+        default:
+
+        mensaje = "Nota incorrecta"
+    }
+
+    return mensaje
+
+}
+
+darNota(nota)
+alert(`${mensaje}mensaje`)
+

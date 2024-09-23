@@ -17,3 +17,15 @@
  *
  ***************************************************************************************************************/
 
+import solicitarDato from "../../ValidarDatos.js"
+
+let nCaramelos = solicitarDato("Número entero positivo de niños: ", "integer")
+let nPeques = solicitarDato("Número entero positivo de caramelos: ", "integer")
+ 
+caraNinhos = (nPeques / nCaramelos)
+sobras = (nPeques % nCaramelos)
+
+mensaje = `El número de caramelos por niño es: ${Math.round(caraNinhos * 100) / 100}
+El número de caramelos que sobran es: ${sobras}`
+
+alert(mensaje)

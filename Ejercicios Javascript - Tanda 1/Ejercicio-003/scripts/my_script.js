@@ -19,8 +19,11 @@
  *             Tu nombre es .... y tienes .... años
  *
  ***************************************************************************************************************/
-let nombre = prompt("Introduce tu nombre: ")
-let edad = prompt("Ahora tu edad: ")
+
+import solicitarDato from "../../ValidarDatos.js"
+
+let nombre = solicitarDato("Introduce tu nombre: ", "string")
+let edad = solicitarDato("Ahora tu edad: ", "string")
 
 if (isNaN(nombre) == true & isNaN(edad) == false) {
 
@@ -33,25 +36,4 @@ if (isNaN(nombre) == true & isNaN(edad) == false) {
     
 }
 
-let elemento = prompt("Introduzca un elemento")
-let tipo = prompt("Tipo del elemento?")
-
-function cTipo (elemento, tipo) {
-
-    switch (tipo) {
-
-        case "Entero": case "Int":
-
-        if (isNaN(elemento) == true || parseFloat(elemento) != parseInt(elemento)) {
-
-            mensaje = "No coincide"
-
-        } else {
-
-            mensaje = "Coincide"
-        }
-        
-        break
-    }
-}
 
