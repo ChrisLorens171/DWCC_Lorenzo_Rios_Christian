@@ -11,6 +11,8 @@
  *
  ***************************************************************************************************************/
 
-let nombre = prompt("Introduce tu nombre: ")
+import solicitarDato from "../../ValidarDatos.js"
+
+let nombre = solicitarDato("Introduce tu nombre: ", "string")
 
 console.log(`Bienvenido a mi página, ${nombre}`)

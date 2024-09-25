@@ -33,20 +33,22 @@
  *              deberíamos invertir para alcanzar un determinado objetivo final
  * 
  ***************************************************************************************************************/
+import solicitarDato from "../../ValidarDatos.js"
 
-let cantidad = prompt("Cantidad Inicial")
-let interes = prompt("Interés anual")
-let anhos = prompt("Número de años")
-let cuotas = prompt("Número de cuotas")
+let cantidad = solicitarDato("Cantidad Inicial", "integer")
+let interes = solicitarDato("Interés anual", "integer")
+let anhos = solicitarDato("Número de años", "integer")
+let cuotas = solicitarDato("Número de cuotas", "integer")
 let total
+let mensaje
 
 function calculoDinero (cantidad, interes, anhos, cuotas) {
 
     total = (cantidad * Math.pow((1.0 + (interes / 100) / cuotas),(cuotas * anhos)))
 
-    mensaje1 = `${cantidad} euros invertidos al ${interes} %, por ${anhos} años cobrando intereses ${cuotas} veces al año hacen ${Math.round(total * 100) / 100} euros`
+    mensaje = `${cantidad} euros invertidos al ${interes} %, por ${anhos} años cobrando intereses ${cuotas} veces al año hacen ${Math.round(total * 100) / 100} euros`
 
-    return mensaje1
+    return mensaje
 
 }
 
@@ -54,13 +56,13 @@ function calculoInverso (interes, anhos, cuotas, total) {
 
     cantidad = (total / Math.pow((1.0 + (interes / 100) / cuotas),(cuotas * anhos)))
 
-    mensaje2 = `Para obtener ${total} euros es necesario invertir ${Math.round(cantidad * 100) / 100} euros al ${interes} % por ${anhos} años cobrando intereses ${cuotas} veces al año`
+    mensaje = `Para obtener ${total} euros es necesario invertir ${Math.round(cantidad * 100) / 100} euros al ${interes} % por ${anhos} años cobrando intereses ${cuotas} veces al año`
 
-    return mensaje2
+    return mensaje
 }
 
 calculoDinero(cantidad, interes, anhos, cuotas)
-console.log(mensaje1)
+console.log(mensaje)
 
 total = prompt("Introduce la cantidad que quieres conseguir")
 interes = prompt("Interés anual")
@@ -68,6 +70,6 @@ anhos = prompt("Número de años")
 cuotas = prompt("Número de cuotas")
 
 calculoInverso(interes, anhos, cuotas, total)
-console.log(mensaje2)
+console.log(mensaje)
 
 

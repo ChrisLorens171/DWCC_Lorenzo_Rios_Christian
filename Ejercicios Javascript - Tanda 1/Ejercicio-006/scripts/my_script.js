@@ -19,8 +19,9 @@
  *             La edad no puede ser superior a 120
  *
  ***************************************************************************************************************/
+import solicitarDato from "../../ValidarDatos.js"
 
-let edad = prompt("Introduce tu edad")
+let edad = solicitarDato("Introduce tu edad","integer")
 let mensaje1
 let mensaje2
 

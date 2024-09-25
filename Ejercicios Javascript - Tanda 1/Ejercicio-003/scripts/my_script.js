@@ -23,7 +23,7 @@
 import solicitarDato from "../../ValidarDatos.js"
 
 let nombre = solicitarDato("Introduce tu nombre: ", "string")
-let edad = solicitarDato("Ahora tu edad: ", "string")
+let edad = solicitarDato("Ahora tu edad: ", "integer")
 
 if (isNaN(nombre) == true & isNaN(edad) == false) {
 

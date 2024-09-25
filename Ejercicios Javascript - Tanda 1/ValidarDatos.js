@@ -1,5 +1,7 @@
-export default function solicitarDato (dato ,tipo) {
+export default function solicitarDato (mensaje,tipo) {
 
+    let dato = null
+    
     do {
         dato = prompt(mensaje)
 
@@ -15,7 +17,7 @@ export default function solicitarDato (dato ,tipo) {
 
         }
         
-        alert(`Error! El dato debe ser de tipo ${dato}`)
+        alert(`Error! El dato debe ser de tipo ${tipo}`)
 
     } while (true)
 }

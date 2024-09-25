@@ -19,7 +19,9 @@
  *
  ***************************************************************************************************************/
 
-let nota = prompt("Número entero entre 0 y 100 (ambos incluidos): ")
+import solicitarDato from "../../ValidarDatos.js"
+
+let nota = solicitarDato("Número entero entre 0 y 100 (ambos incluidos): ", "integer")
 let mensaje
 
 function darNota (nota) {
@@ -66,5 +68,5 @@ function darNota (nota) {
 }
 
 darNota(nota)
-alert(`${mensaje}mensaje`)
+alert(`${mensaje}`)
 
