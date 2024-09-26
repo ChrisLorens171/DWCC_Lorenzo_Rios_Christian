@@ -32,6 +32,8 @@
 
 import solicitarDato from "../../ValidarDatos.js";
 
+/*
+
 function convertirEuros(monedas, tipoCambio, euros) {
     let conversiones = [];
 
@@ -60,3 +62,43 @@ convertirEuros(monedas, tipoCambio, euros).forEach(resultado => {
     alert(`${euros} euros son ${resultado.cantidad.toFixed(2)} ${resultado.moneda}`);
 
 });
+*/
+
+/* Profe */
+
+const MONEDAS=[
+    {
+        moneda: "DOL",
+        tipo: 1.1
+    },
+    {
+        moneda: "YEN",
+        tipo: 1.5
+    },
+    {
+        moneda: "LIBRA",
+        tipo: 2
+    }
+]
+
+
+function cambiar(cantidad, moneda) {
+
+    const monedaCambio = MONEDAS.find(el => el.moneda == moneda)
+
+    return {
+
+        moneda: monedaCambio.moneda,
+        cambio: (monedaCambio.tipo * cantidad).toFixed(2)
+
+    }
+
+}
+
+function cambiarTodas(cantidad, ) {
+
+    return MONEDAS.map(el => cambiar(cantidad, el.moneda))
+
+}
+
+console.log(cambiarTodas(100))
