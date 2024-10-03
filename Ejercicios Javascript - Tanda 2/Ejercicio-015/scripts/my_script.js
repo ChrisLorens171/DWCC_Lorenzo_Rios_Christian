@@ -20,3 +20,50 @@
  *   Nota: Formatea la salida en el documento HTML empleando una tabla con 5 columnas y nueve filas
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+/* Forma 1 */
+
+/*
+const $body = document.querySelector("body")
+
+let n = solicitarDato("Tabla del ...", "integer")
+
+let tabla = "<table>"
+
+for (let i = 1; i < 9; i++) {
+
+    tabla +=`<tr>
+                <td>${n}</td>
+                <td>*</td>
+                <td>${i}</td>
+                <td>=</td>
+                <td>${n * i}</td>
+            </tr>`
+}
+
+tabla += "</table>"
+
+//console.log($body)
+//console.log(tabla)
+$body.innerHTML = tabla
+
+
+/* Forma 2 */
+
+const $body = document.querySelector("body")
+
+const numeros = Array.from({length:9}, (el, index) => index + 1)
+
+let n = solicitarDato("Tabla del ...", "integer")
+
+let interiorTabla = numeros.map(el => `<tr>
+                        <td>${n}</td>
+                        <td>*</td>
+                        <td>${el}</td>
+                        <td>=</td>
+                        <td>${el * n}</td>
+                    </tr>`).join(``)
+
+$body.innerHTML = `<table> ${interiorTabla} </table>`

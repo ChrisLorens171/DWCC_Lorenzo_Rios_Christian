@@ -18,3 +18,30 @@
  *   Salida  : true (validar paridad impar) o false (validar partidad par) 
  *
  ***************************************************************************************************************/
+
+let n = prompt("Introduce un numero binario de 8 digitos: ")
+
+function validarPar(n){
+
+    let binario = n.split('')
+
+    return binario.filter(el => el == 1).length % 2 == 0
+
+}
+    
+function validarImpar(n){
+
+    let binario = n.split('')
+
+    return binario.filter(el => el == 1).length % 2 != 0
+
+}
+
+console.log(`Paridad par = ${validarPar(n)}`)
+    
+console.log(`Paridad impar = ${validarImpar(n)}`)
+
+
+
+
+

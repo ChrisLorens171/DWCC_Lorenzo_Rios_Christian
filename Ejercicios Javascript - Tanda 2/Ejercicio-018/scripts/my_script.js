@@ -17,3 +17,85 @@
  *   Salida  : 1, 3, 5, 7, ...
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+let n = solicitarDato("Introduce un numero para saber si es primo: ", "integer")
+let esPrimo = true
+
+/* Funcion declarada */
+
+function esPrimoDeclarada(n) {
+
+    if (n > 1) {
+
+        for (let i = 2; i <= n / 2; i++) { //Si el numero es divisible por 2 con resto 0, no es primo
+                    
+            if (n % i == 0){
+                
+                esPrimo = false
+                
+            }
+        }
+
+    } else {
+
+        console.log(`${n} no es primo`)
+    }
+
+    return esPrimo;
+
+}
+
+/* Funcion expresada */
+
+let esPrimoExpresada = function(n) {
+
+    if (n > 1) {
+
+        for (let i = 2; i <= n / 2; i++) { //Si el numero es divisible por 2 con resto 0, no es primo
+                    
+            if (n % i == 0){
+                
+                esPrimo = false
+                
+            }
+        }
+
+    } else {
+
+        console.log(`${n} no es primo`)
+    }
+
+    return esPrimo;
+
+}
+
+/* Funcion flecha */
+
+let esPrimoFlecha = () => {
+    
+    if (n > 1) {
+
+        for (let i = 2; i <= n / 2; i++) { //Si el numero es divisible por 2 con resto 0, no es primo
+                    
+            if (n % i == 0){
+                
+                esPrimo = false
+                
+            }
+        }
+
+    } else {
+
+        console.log(`${n} no es primo`)
+    }
+
+    return esPrimo;
+
+}
+
+
+console.log(esPrimoDeclarada(n))
+console.log(esPrimoExpresada(n))
+console.log(esPrimoFlecha(n))

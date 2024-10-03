@@ -17,39 +17,57 @@
  *
  ***************************************************************************************************************/
 
-import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
 
 let n = solicitarDato("Introduce un numero:", "integer")
-let mensaje = ""
-let nums1 = 2
-let nums2 = 2
-
-/* Con for */
+let mensajeFor = ''
 
 for (let i = 2; i <= n; i += 2) {
 
-    mensaje = mensaje.concat(`${i} `)
+    mensajeFor += `${i} `
 
 }
 
-console.log(mensaje)
+console.log(mensajeFor)
 
 /* Con while */
 
-while (nums1 <= n) {
+let mensajeWhile = ''
+let contador = 2
 
-    mensaje = mensaje.concat(`${i}`)
-    
-    nums1 += 2
+while (contador <= n) {
 
+    mensajeWhile += `${contador} `
+
+    contador += 2
 }
 
-console.log(mensaje)
+console.log(mensajeWhile)
+
 
 /* Con do while */
 
-do {
+let mensajeDoWhile = ''
+let contadorDoWhile = 2
 
-    nums2 += 2
+    do {
 
-} while (nums2 <= n)
+        mensajeDoWhile += `${contadorDoWhile} `
+
+        contadorDoWhile += 2
+
+    } while (contadorDoWhile <= n)
+
+console.log(mensajeDoWhile)
+
+/* Arrays y método Join */
+
+let numerosPares = [];
+
+for (let i = 2; i <= n; i += 2) {
+
+    numerosPares.push(i)
+    
+}
+
+console.log(numerosPares.join(' '))
