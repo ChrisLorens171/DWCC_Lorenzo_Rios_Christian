@@ -15,3 +15,17 @@
  *
  ***************************************************************************************************************/
 
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+let n = solicitarDato("Introduce un numero:", "integer")
+let n2 = solicitarDato("Otro mas: ", "integer")
+
+if (n2 > n) {
+
+    for (let i = n; i <= n2; i++) {
+
+        console.log(`${i} al cuadrado es ${Math.pow(i,2)}`)
+
+    }
+}
+
