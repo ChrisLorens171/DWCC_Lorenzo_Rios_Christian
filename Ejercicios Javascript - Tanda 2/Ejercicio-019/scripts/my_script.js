@@ -20,3 +20,4 @@ import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos
 
 let n = solicitarDato("Introduce un numero: ", "integer")
 
+let prueba
