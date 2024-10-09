@@ -1,22 +1,43 @@
 
 let nfichas = parseInt(prompt('Introduce el número de fichas: '))
-let altura = 0
-let i = 0
-let j = i
-let sum = j
 
-if (nfichas <= 10000 && nfichas > 0) {
-    
-    while (i <= nfichas) {
-
-        while (j <= nfichas) {
-
-            j++
-            sum += j
-
+if (nfichas <= 10000 && nfichas > 0) {  
+    let j=1
+    let i=1
+    let suma
+    do {
+        suma=0
+        i=j
+        while(suma<=nfichas){
+            suma+=i
+            i++
         }
+        j++
+        i--
+        suma-=i
+    } while(suma!=nfichas)
+    console.log(i-1,j-1,i-j+1)
+} 
 
-        altura++
+
+/* function contarFichas(fichasTotales,inicio){
+    let suma=0
+    let i=inicio
+    while(suma<=fichasTotales){
+        suma+=i
         i++
     }
+    i--
+    suma-=i
+    if (suma!=fichasTotales)
+        return contarFichas(fichasTotales,inicio+1)
+    else {
+        return {
+            inicio,
+            fin:i-1,
+            altura:i-inicio
+        }
+    }
 }
+
+console.log(contarFichas(nfichas,1)) */
