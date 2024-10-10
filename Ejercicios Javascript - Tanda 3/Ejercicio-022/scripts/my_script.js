@@ -16,3 +16,20 @@
  *   Salida  : La secuencia de valores obtenida
  *
  ***************************************************************************************************************/
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+let n = solicitarDato("Introduce un numero entre 1 y 100: ", "integer")
+const RESPUESTA = []
+
+while (n != 1) {
+
+    if (n % 2 == 0) {
+        n = n / 2
+    } else {
+        n = (n * 3) + 1
+    }
+
+    RESPUESTA.push(n)
+}
+
+console.log(RESPUESTA.join(' --> '))

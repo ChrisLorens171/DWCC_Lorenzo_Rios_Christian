@@ -33,3 +33,27 @@
  *   Salida  : tabla html que muestre la Frecuencia cardíaca para Intensdidades del 55% al 95%
  *
  ***************************************************************************************************************/
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+const $body = document.querySelector("body")
+
+let edad = solicitarDato("Edad", "integer")
+let dfc = solicitarDato("Frecuencia cardíaca en descanso", "integer")
+let frecuencia 
+
+let tabla = "<table>"
+
+for (let i = 55; i <= 95; i+=5) {
+
+    frecuencia = (((220-edad)-dfc)*(i/100))+dfc
+
+    tabla +=`<tr>
+                <td>${i} %</td>
+                <td> => </td>
+                <td>${Math.round(frecuencia)}</td>
+            </tr>`
+}
+
+tabla += "</table>"
+
+$body.innerHTML = tabla

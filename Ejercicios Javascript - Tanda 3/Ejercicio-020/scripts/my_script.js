@@ -18,4 +18,31 @@
  *
  ***************************************************************************************************************/
 
-let n = parseInt()
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+//const ALEATORIO = (min,max) = min + (max - min) * Math.random
+
+let n = 0
+let numeroA = Math.floor(Math.random() * (100)) + 1
+let contador = 0
+let mensaje = ""
+
+while (numeroA != n) {
+
+    n = solicitarDato("Introduce un numero entre 1 y 100: ", "integer")
+
+    if (n >= 1 && n <= 100) {
+        contador++
+    }
+
+    if (n > numeroA) {
+        mensaje = "Es mayor"
+        console.log(mensaje)
+    } else if (n < numeroA) {
+        mensaje = "Es mayor"
+        console.log(mensaje)
+    }
+
+}
+
+alert(`Has acertado! Has necesitado ${contador} intentos`)
