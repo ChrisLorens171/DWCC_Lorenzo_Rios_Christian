@@ -20,5 +20,9 @@
  *              ************
   *
  ***************************************************************************************************************/
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+let cadena = solicitarDato('Introduce una frase: ', 'string')
+
 
 

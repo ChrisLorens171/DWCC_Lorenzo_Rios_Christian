@@ -19,3 +19,32 @@
  *             Palabras ordenadas de la z a la a: ZZZ YYYY WWWW
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+let str = solicitarDato('Introduce una frase: ', 'string')
+str = str.replace(/ /g, ',');
+
+let arr = str.split(',')
+
+//Mostrar ultimo elemento del array
+let primerElemento = `La primera palabra es: ${arr[0]}`
+
+//Mostrar primer elemento del array
+let ultimoElemento = `La ultima palabra es: ${arr[arr.length - 1]}`
+
+//Mostrar el numero de palabras
+let numeroPalabras = (`Número de palabras: ${arr.length}`)
+
+//Ordenamos el array en orden alfabetico
+let arrAlfabetico = `Palabras ordenadas de la a a la z: ${arr.sort()}`
+
+//Le damos la vuelta al array
+let arrReverso = `Palabras ordenadas de la z a la a: ${arr.reverse()}`
+
+console.log(numeroPalabras)
+console.log(primerElemento)
+console.log(ultimoElemento)
+console.log(arrAlfabetico)
+console.log(arrReverso)
+

@@ -14,3 +14,23 @@
  *   Salida  : Indica todas las posiciones en las que se encuentra la palabra dentro de texto
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
+
+let cadena = solicitarDato('Introduce una frase: ', 'string').toUpperCase()
+let palabra = solicitarDato('Introduce una palabra ', 'string').toUpperCase()
+
+function encontrarPosiciones(cadena, palabra) {
+    
+    const posiciones = []
+    let index = cadena.indexOf(palabra)
+
+    while (index != -1) {
+        posiciones.push(index)
+        index = cadena.indexOf(palabra, index + 1);
+    }
+
+    return posiciones
+}
+
+console.log(`La palabra ${palabra} está en las posiciones: ${encontrarPosiciones(cadena, palabra)}`)

@@ -41,14 +41,14 @@ let edad = solicitarDato("Edad", "integer")
 let dfc = solicitarDato("Frecuencia cardíaca en descanso", "integer")
 let frecuencia 
 
-let tabla = "<table>"
+let tabla = '<table align="center">'
 
-for (let i = 55; i <= 95; i+=5) {
+for (let i = 55; i <= 95; i++) {
 
     frecuencia = (((220-edad)-dfc)*(i/100))+dfc
 
     tabla +=`<tr>
-                <td>${i} %</td>
+                <td>${i}%</td>
                 <td> => </td>
                 <td>${Math.round(frecuencia)}</td>
             </tr>`

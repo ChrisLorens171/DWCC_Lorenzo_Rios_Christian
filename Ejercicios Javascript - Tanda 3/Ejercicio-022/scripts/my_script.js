@@ -18,6 +18,7 @@
  ***************************************************************************************************************/
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
 
+/*
 let n = solicitarDato("Introduce un numero entre 1 y 100: ", "integer")
 const RESPUESTA = []
 
@@ -33,3 +34,26 @@ while (n != 1) {
 }
 
 console.log(RESPUESTA.join(' --> '))
+*/
+
+let n = solicitarDato("Introduce un numero entre 1 y 100: ", "integer");
+const RESPUESTA = [];
+
+function cadenaNumeros(n) {
+    RESPUESTA.push(n);
+    
+    if (n === 1) {
+        return RESPUESTA
+
+    }
+
+    if (n % 2 === 0) {
+        cadenaNumeros(n / 2)
+    } else {
+        cadenaNumeros(n * 3 + 1)
+    }
+}
+
+cadenaNumeros(n)
+console.log(RESPUESTA.join(' --> '))
+
