@@ -33,3 +33,47 @@
  *   Salida  : tabla html que muestre la Frecuencia cardíaca para Intensdidades del 55% al 95%
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../validarDatos.js"
+
+const frecuenciaCardiaca=(edad,dfc,intensidad)=>(((220-edad)-dfc)*intensidad/100)+dfc
+
+function pedirDato(msg,min,max=Infinity){
+    let dato=solicitarDato(msg,"integer")
+    while (dato<min||dato>max){
+        if (max!=Infinity)
+            alert(`El numero entero debe estar entre ${min} y ${max}`)
+        else
+            alert(`El numero entero debe ser mayor que ${min-1}`)
+        dato=solicitarDato(msg,"integer")
+    }
+    return dato
+}
+
+function showTable(inicio,fin,paso,edad,dfc){
+    let innerTable=Array.from({length:(fin-inicio)/paso+1},(el,i)=>i*5+inicio).map(intensidad=>`
+        <tr>
+            <td>${intensidad}</td>
+            <td>${frecuenciaCardiaca(edad,dfc,intensidad)}</td>
+        </tr>
+    `).join('')
+    document.querySelector("body").innerHTML=`
+        <table border>
+            <tr>
+                <td>Intensidad</td>
+                <td>Frecuencia</td>
+            </tr>
+            ${innerTable}
+        </table>`
+}
+
+const INICIO=55
+const FIN=95
+const PASO=5
+
+let edad=pedirDato("Edad: ",1)
+let dfc=pedirDato("Frecuencia cardiaca en reposo: ",1)
+showTable(INICIO,FIN,PASO,edad,dfc)
+
+
+

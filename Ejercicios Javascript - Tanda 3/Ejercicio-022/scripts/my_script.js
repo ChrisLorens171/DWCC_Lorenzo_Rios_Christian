@@ -16,3 +16,55 @@
  *   Salida  : La secuencia de valores obtenida
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../validarDatos.js"
+
+function pedirDato(msg,min,max=Infinity){
+    let dato=solicitarDato(msg,"integer")
+    while (dato<min||dato>max){
+        if (max!=Infinity)
+            alert(`El numero entero debe estar entre ${min} y ${max}`)
+        else
+            alert(`El numero entero debe ser mayor que ${min-1}`)
+        dato=solicitarDato(msg,"integer")
+    }
+    return dato
+}
+
+// No es una buena forma porque devuelve los datos como cadena
+function CollatzIterativo1(n){
+    if (n==1)
+        return 1
+    else {
+        let numerosStr=``
+        do{
+            numerosStr+=`${n}-->`
+            n=(n%2)?3*n+1:n/2 
+        } while(n!=1)
+        return `${numerosStr}1`
+    }
+}
+
+// Es preferible al anterior
+function CollatzIterativo2(n){
+    const numeros=[]
+
+    numeros.push(n)
+    while (n!=1){
+        n=(n%2)?3*n+1:n/2
+        numeros.push(n)
+    }
+    return numeros
+}
+
+function CollatzRecursivo(n){
+    if (n==1)
+        return 1
+    else
+        return `${n}-->${n%2?CollatzRecursivo(3*n+1):CollatzRecursivo(n/2)}`
+}
+
+let inicio=pedirDato("Numero entero de inicio: ",1)
+console.log(CollatzIterativo1(inicio))
+//console.log(CollatzIterativo2(inicio).join("-->"))
+//console.log(CollatzRecursivo(inicio))

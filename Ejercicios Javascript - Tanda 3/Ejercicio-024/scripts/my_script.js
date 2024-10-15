@@ -19,3 +19,19 @@
  *             Palabras ordenadas de la z a la a: ZZZ YYYY WWWW
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../validarDatos.js"
+
+let frase=solicitarDato("Frase: ","string")
+while (!frase.length){
+    alert("Tienes que introducir una frase")
+    frase=solicitarDato("Frase: ","string")
+}
+
+const palabras=frase.split(" ").filter(el=>el!='')
+console.log(`La primera palabra de la frase es: ${palabras[0]}`)
+console.log(`La última palabra de la frase es: ${palabras[palabras.length-1]}`)
+const palabrasOrdenadas=palabras.map(el=>el.toLocaleLowerCase()).sort()
+console.log(`Las palabras ordenadas de la a a la z: ${palabrasOrdenadas}`)
+console.log(`Las palabras ordenadas de la z a la a: ${palabrasOrdenadas.reverse()}`)
+

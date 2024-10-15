@@ -18,4 +18,37 @@
  *
  ***************************************************************************************************************/
 
-let n = parseInt()
+import solicitarDato from "../../validarDatos.js"
+
+const aleatorioFn=(min,max)=>parseInt(min+(max-min)*Math.random())
+
+function pedirDato(msg,min,max=Infinity){
+    let dato=solicitarDato(msg,"integer")
+    while (dato<min||dato>max){
+        if (max!=Infinity)
+            alert(`El numero entero debe estar entre ${min} y ${max}`)
+        else
+            alert(`El numero entero debe ser mayor que ${min-1}`)
+        dato=solicitarDato(msg,"integer")
+    }
+    return dato
+}
+
+let min=1
+let max=100
+
+let nIntentos=0
+let aleatorio=aleatorioFn(min,max+1)
+let numero=null
+let respuesta=null
+do{
+    numero=pedirDato(`Numero entero entre ${min} y ${max}`,min,max)
+    if (numero!=aleatorio){
+        respuesta=(numero>aleatorio)
+                     ?`El numero es menor`
+                     :`El numero es mayor`
+        console.log(respuesta)
+    }
+    nIntentos++
+} while (numero!=aleatorio)
+console.log(`Has acertado en ${nIntentos} intentos`)

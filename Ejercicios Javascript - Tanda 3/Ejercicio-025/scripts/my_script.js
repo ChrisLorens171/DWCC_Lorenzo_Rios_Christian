@@ -14,3 +14,32 @@
  *   Salida  : Indica todas las posiciones en las que se encuentra la palabra dentro de texto
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../validarDatos.js"
+
+function solicitarCadena(msg){
+  let cadena=solicitarDato(msg,"string")
+  while (!cadena.length){
+      cadena=solicitarDato(msg,"string")
+  }
+  return cadena.toLocaleLowerCase()
+}
+
+let frase=solicitarCadena("Frase: ")
+let palabra=solicitarCadena("Palabra a buscar: ")
+
+const posiciones=[]
+let posicion=frase.indexOf(palabra)
+while(posicion!=-1){
+    posiciones.push(posicion)
+    posicion=frase.indexOf(palabra,posicion+1)
+}
+
+let solucion=posiciones.length
+?`La palabra "${palabra}" podemos encontrarla en la frase 
+"${frase}"
+a partir de las posiciones: ${posiciones.join(", ")}`
+:`No podemos encontrar la palabra ${palabra} en la frase 
+"${frase}" `
+
+console.log(solucion)
