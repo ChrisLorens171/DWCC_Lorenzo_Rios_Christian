@@ -23,9 +23,8 @@
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
 
 let str = solicitarDato('Introduce una frase: ', 'string')
-str = str.replace(/ /g, ',');
 
-let arr = str.split(',')
+let arr = str.split(' ')
 
 //Mostrar ultimo elemento del array
 let primerElemento = `La primera palabra es: ${arr[0]}`

@@ -5,7 +5,7 @@ export default function solicitarDato (mensaje,tipo) {
     do {
         dato = prompt(mensaje)
 
-        if(isNaN(dato) && tipo == "string") {
+        if(tipo == "string") {
 
             return dato
 
