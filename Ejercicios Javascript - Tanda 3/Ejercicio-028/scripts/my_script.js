@@ -16,3 +16,28 @@
  *   Salida  : 0,1,2,3,5,8,13,....
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+let n = solicitarDato("Introduce un numero", "integer")
+
+function fibIterativo(n) {
+    let a = 0
+    let b = 1
+    let numFib = 0
+    let respuesta = [0]
+  
+    while (numFib < n) {
+        let actual = b + a
+        if (actual < n) {
+            respuesta.push(actual)
+        }
+        a = b
+        b = actual
+        numFib = actual
+    }
+
+    return respuesta
+}
+
+console.log(fibIterativo(n))
+

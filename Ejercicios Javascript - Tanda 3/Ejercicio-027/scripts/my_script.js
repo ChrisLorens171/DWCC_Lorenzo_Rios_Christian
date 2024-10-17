@@ -36,9 +36,8 @@ for (let i = 0; i < cadena.length; i += longitud) {
     }
 }
 
-cadena = cadena.substring(posicionMax + longitudMax)
-
-console.log(`Secuencia ${cadena} 'Posición: ${posicionMax}`)
+cadena = cadena.substring(posicionMax, posicionMax + longitudMax)
+console.log(`Secuencia ${cadena} 'Posición: ${posicionMax}`) 
 
 
 
