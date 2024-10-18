@@ -1,7 +1,8 @@
 const libros=["Eloquent JavaScript","Scope & Closures","Understanding ECMAScript 6","Beginning Node.js","Web development with Node & Express"]
 const $d=document,
-    $ul=$d.querySelector("ul")
-    $input=$d.querySelector("input[type='text']")
+    $ul=$d.querySelector("ul"),
+    $input=$d.querySelector("input[type='text']"),
+    $btnAdd=$d.querySelector("button")
 
 /* Ejemplo Corto */
 $ul.innerHTML=libros.map(libro=>`
@@ -9,7 +10,19 @@ $ul.innerHTML=libros.map(libro=>`
         <span class="titulo">${libro}</span>
         <span class="borrar">-</span>
     </li>`).join('')
-console.log($input)
+
+$btnAdd.addEventListener("click", ev=>{
+    ev.preventdefault()
+
+    if ($input.value!=""){
+        $ul.innerHTML+=
+        `<li>
+            <span class="titulo">${$input[1].value}</span>
+            <span class="borrar">-</span>
+        </li>`
+    }
+    input.value=""
+})
 
 /* Ejemplo Mediano */
     
