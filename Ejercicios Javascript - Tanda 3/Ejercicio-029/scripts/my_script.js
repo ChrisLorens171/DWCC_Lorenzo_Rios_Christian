@@ -14,12 +14,15 @@
  ***************************************************************************************************************/
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
 
-let cadena = solicitarDato("Introduce una cadena", "string")
+let cadena = solicitarDato("Introduce una cadena", "string").replaceAll(/ /g, "")
+let cadenaReves
 
-function limpiarCadenas(cadenaF) { 
-    cadenaF = cadenaF.replace(/[áéíóúÁÉÍÓÚñÑ]/g, 'aieouAIEOUnN').toUpperCase().trim().split('')
+cadena = cadena.replaceAll(" ","").toUpperCase()
+cadenaReves = cadena.split("").reverse().join("")
 
-    return cadenaF
+if (cadena === cadenaReves) {
+    console.log('La cadena es un palíndromo')
+} else {
+    console.log('La cadena no es un palíndromo')
 }
 
-console.log(compararCadenasPalindromas(cadena, cadenaReversa))

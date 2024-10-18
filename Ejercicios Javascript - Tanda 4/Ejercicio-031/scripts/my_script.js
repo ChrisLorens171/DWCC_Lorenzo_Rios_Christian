@@ -24,3 +24,8 @@
  *   Salida  : "Tu índice de masa corporal es <imc>. Tienes un riesgo ..... de enfermedad coronaria"
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+
+let cadena = solicitarDato("Introduce tu peso en kg", "string")
+let estatura = solicitarDato("Introduce tu estatura en metros", "string")
