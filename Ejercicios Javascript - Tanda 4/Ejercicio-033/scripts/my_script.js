@@ -19,3 +19,27 @@
  *   Salida  : Como has nacido el dia de mes de año, tu número de la suerte es XXX
  *
  ***************************************************************************************************************/
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+
+const dia = solicitarDato("Introduce tu dia de nacimiento: ", "integer")
+const mes = solicitarDato("Introduce tu mes de nacimiento: ", "integer")
+const anho = solicitarDato("Introduce tu año de nacimiento: ", "integer")
+
+function sumarCifras(num) {
+
+    while (num >= 10) {
+      num = num.toString().split('').reduce((contador, val) => contador + parseInt(val), 0);
+    }
+
+    return num;
+  }
+  
+function calcularNumeroDeLaSuerte(dia, mes, anho) {
+    const sumaInicial = dia + mes + anho;
+    const numeroDeLaSuerte = sumarCifras(sumaInicial);
+
+    return `Como has nacido el ${dia} de ${mes} de ${anho}, tu número de la suerte es ${numeroDeLaSuerte}`;
+}
+
+  console.log(calcularNumeroDeLaSuerte(dia, mes, anho));
+  
