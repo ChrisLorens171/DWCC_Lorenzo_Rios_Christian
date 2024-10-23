@@ -21,3 +21,15 @@
  *   Salida  : -16       
  *
  ***************************************************************************************************************/
+
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+
+let cadena = solicitarDato("Introduce una cadena de caracteres en formato DL, siendo D un numero decimal y L un numero romano: ", "string")
+let cadenaSeparada = cadena.match(/.{1,2}/g).join('/');
+
+let arrSeparada = cadenaSeparada.split("/")
+
+console.log(arrSeparada)
+
+romanoDecimal(cadena)
+

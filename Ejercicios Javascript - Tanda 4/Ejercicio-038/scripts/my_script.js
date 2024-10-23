@@ -17,21 +17,21 @@
  *
  ***************************************************************************************************************/
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
-const n = solicitarDato("Introduce la longitud del array:", "integer")
+let n = solicitarDato("Introduce la longitud del array:", "integer")
 
 const generarArrayAleatorio = (n) => {
     return Array.from({length: n}, () => Math.floor(Math.random() * 10) + 1)
 }
 
-const calcularSumas = (array) => {
+let calcularSumas = (array) => {
 
     // Filtrar los elementos pares de impares
-    const pares = array.filter(num => num % 2 == 0)
-    const impares = array.filter(num => num % 2 != 0)
+    let pares = array.filter(num => num % 2 == 0)
+    let impares = array.filter(num => num % 2 != 0)
 
     // Calculamos las sumas
-    const sumaPares = pares.reduce((contador, num) => contador + num, 0)
-    const sumaImpares = impares.reduce((contador, num) => contador + num, 0)
+    let sumaPares = pares.reduce((contador, num) => contador + num, 0)
+    let sumaImpares = impares.reduce((contador, num) => contador + num, 0)
 
     // Mostramos los resultados
     console.log(`Los elementos pares del array son: ${pares.join(', ')}`)
@@ -40,6 +40,6 @@ const calcularSumas = (array) => {
     console.log(`La suma de los elementos impares del array es: ${sumaImpares}`)
 }
 
-const arrayAleatorio = generarArrayAleatorio(n)
+let arrayAleatorio = generarArrayAleatorio(n)
 calcularSumas(arrayAleatorio)
   
