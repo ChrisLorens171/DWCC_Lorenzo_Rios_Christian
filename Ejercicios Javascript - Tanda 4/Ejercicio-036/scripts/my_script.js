@@ -15,3 +15,24 @@
  *   Salida  : La fecha dia/mes/anho (es|no es) correcta
  *
  ***************************************************************************************************************/
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+
+let fecha = solicitarDato("Introduce una fecha con formato (dd/mm/aa): ", "string").split("/")
+let dia = fecha[0]
+let mes = fecha[1]
+let anho = fecha[2]
+
+let mensaje = ""
+
+let maxDias = new Date(anho, mes, 0).getDate()
+
+if (dia > 0 && dia <= maxDias && mes > 0 && mes < 13) {
+    mensaje = `La fecha ${fecha.join("/")} es correcta`
+} else {
+    mensaje = `La fecha ${fecha.join("/")} es incorrecta`
+}
+
+console.log(mensaje)
+
+
+
