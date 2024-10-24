@@ -16,20 +16,39 @@
  *          Tenemos que transformar el número romano en decimal
  * 
  *   Entrada : Cadena de caracteres con formato DL donde D es un digito numérico 0-9 y L una letra entre I,V,L,C,M
- *             Ejemplo: 2I3I2X9V1X
+ *             Ejemplo: 2I3I2X9V1X  +2 -3 +20 -45 +10
  *
  *   Salida  : -16       
  *
  ***************************************************************************************************************/
-
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
 
-let cadena = solicitarDato("Introduce una cadena de caracteres en formato DL, siendo D un numero decimal y L un numero romano: ", "string")
-let cadenaSeparada = cadena.match(/.{1,2}/g).join('/');
+let cadena = solicitarDato("Introduce una cadena de caracteres en formato DL: ", "string");
 
-let arrSeparada = cadenaSeparada.split("/")
+const romanoDecimal = (cadena) => {
+    const valorRomano = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 }
+    const arrSeparada = cadena.match(/(\d)([IVXLCDM])/g)
+    
+    let total = 0
 
-console.log(arrSeparada)
+    arrSeparada.forEach((par, index) => {
+        let digito = parseInt(par[0], 10)
+        let letraRomana = par[1]
+        let valorActual = digito * valorRomano[letraRomana]
 
-romanoDecimal(cadena)
+        if (index < arrSeparada.length - 1) {
+            let siguienteValor = valorRomano[arrSeparada[index + 1][1]]
+
+            total += (valorRomano[letraRomana] >= siguienteValor) ? valorActual : -valorActual
+        } else {
+            total += valorActual
+        }
+    });
+
+    return total
+};
+
+console.log(romanoDecimal(cadena))
+
+
 
