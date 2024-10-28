@@ -2,7 +2,7 @@ import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos
 
 let ahorrado = solicitarDato("Introduce tus ahorros: ", "integer")
 let gastos = solicitarDato("Introduce tus gastos de este mes: ", "integer")
-let resultado = ahorrado - gastos
+let resultado = ahorrado + gastos
 
 
 if (resultado >= 0) {
@@ -10,3 +10,5 @@ if (resultado >= 0) {
 } else {
     console.log("No")
 }
+
+console.log(`Te quedarías con ${resultado}`)
