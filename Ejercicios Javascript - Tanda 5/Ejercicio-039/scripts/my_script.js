@@ -14,6 +14,7 @@
  ***************************************************************************************************************/
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js"
 let n = solicitarDato("Introduce un numero entero: ", "integer")
+
 let serie1 = 0
 let respuesta1 = ""
 let respuesta2 = ""
@@ -31,6 +32,6 @@ serie1 == n * (n+1) / 2 ? respuesta2 = "Son iguales" : respuesta2 = "No son igua
 console.log(respuesta2)
 
 //Imprimir en la consola la suma de cada término de la serie ((-1)^p+1)/(2*p-1), donde p va desde 1 a n
-let serie2 = Array.from({length:n},(el,i)=>Math.pow((-1),i+2)/(2*i+1)).reduce((anterior,actual)=>anterior+actual,0)
+let serie2 = Array.from({length:n},(el,i)=>Math.pow((-1),i+1)/(2*i-1)).reduce((anterior,actual)=>anterior+actual,0)
 console.log(serie2)
 

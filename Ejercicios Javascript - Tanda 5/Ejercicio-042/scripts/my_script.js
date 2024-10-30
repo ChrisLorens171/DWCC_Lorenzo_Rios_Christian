@@ -10,23 +10,25 @@
  *   Salida  : El entero que falta en el array
  *
  ***************************************************************************************************************/
-let arrNumeros = [1,2,4,5,6,7,8,9]
+let arrNumeros = [1,6,4,7,8,9,2]
 
-function encontrarPerdido (arrayNumeros) {
+let arrOrdenados = arrNumeros.sort()
+
+function encontrarPerdido (arrayOrdenados) {
     let mensaje = ""
 
     // Calculo el maximo y minimo del array
-    let min = Math.min(...arrayNumeros)
-    let max = Math.max(...arrayNumeros)
+    let min = Math.min(...arrayOrdenados)
+    let max = Math.max(...arrayOrdenados)
 
     // Obtenemos el numero de terminos
-    let totalTerminos = arrayNumeros.length + 1
+    let totalTerminos = arrayOrdenados.length + 1
 
     // Calculamos la suma total de la serie de numeros contando el numero perdido
     let sumaTotal = (min + max) * totalTerminos / 2
 
     // Calculamos la suma total de la serie de numeros sin contar el numero perdido
-    let sumaReal = arrayNumeros.reduce((contador, actual) => contador + actual, 0)
+    let sumaReal = arrayOrdenados.reduce((contador, actual) => contador + actual, 0)
 
     // La diferencia entre sumaTotal y sumaReal es el numero perdido
     let resultado = sumaTotal - sumaReal
@@ -36,4 +38,4 @@ function encontrarPerdido (arrayNumeros) {
     return mensaje
 }
 
-console.log(encontrarPerdido(arrNumeros))
+console.log(encontrarPerdido(arrOrdenados))
