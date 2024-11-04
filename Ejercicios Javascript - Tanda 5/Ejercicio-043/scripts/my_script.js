@@ -16,11 +16,15 @@ import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos
 let filas = solicitarDato("Introduce un numero entero para las filas: ", "integer")
 let columnas = solicitarDato("Introduce un numero entero para las columnas: ", "integer")
 
+const MIN=-100
+const MAX=100
+
+const aleatorio=(min,max)=>parseInt(min+(max-min)*Math.random())
 
 function generarMatriz(filas, columnas) {
     return Array.from({ length: filas }, () =>
-        Array.from({ length: columnas }, () => Math.floor(Math.random() * 201) - 100)
-);
+        Array.from({ length: columnas }, () => aleatorio(MIN,MAX))
+    );
 }
 
 let matrizAleatoria = generarMatriz(filas,columnas)

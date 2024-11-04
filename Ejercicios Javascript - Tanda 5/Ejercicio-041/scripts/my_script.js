@@ -17,10 +17,15 @@ let filasColumnas = solicitarDato("Introduce un numero entero para las filas y c
 let sumDiagonal = 0
 let sumDiagonalInversa = 0
 
-function generarMatriz(filasColumnas) {
-    return Array.from({ length: filasColumnas }, () =>
-        Array.from({ length: filasColumnas }, () => Math.floor(Math.random() * 201) - 100)
-);
+const MIN=-100
+const MAX=100
+
+const aleatorio=(min,max)=>parseInt(min+(max-min)*Math.random())
+
+function generarMatriz(filas, columnas) {
+    return Array.from({ length: filas }, () =>
+        Array.from({ length: columnas }, () => aleatorio(MIN,MAX))
+    );
 }
 
 let matrizAleatoria = generarMatriz(filasColumnas)

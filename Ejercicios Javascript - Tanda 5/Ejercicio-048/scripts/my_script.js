@@ -14,3 +14,7 @@
  *   Salida  : Frecuencia de vocales { "a":6, "e":1, "i":0, "o":0, "u":1 }
  *
  ***************************************************************************************************************/
+import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
+
+let cadena = solicitarDato("Introduce una cadena: ", "string");
+

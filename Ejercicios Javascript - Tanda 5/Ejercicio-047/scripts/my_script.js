@@ -20,3 +20,16 @@
 *
 *
 ***************************************************************************************************************/
+
+const carrito = [
+    { producto: "escoba", precio: 12, cantidad: 2},
+    { producto: "peluca", precio: 35, cantidad: 1},
+    { producto: "botella", precio: 0.50, cantidad: 5},
+    { producto: "yogur", precio: 2, cantidad: 50},
+]
+
+const sum = carrito.reduce((prev, curr) => prev + (curr.precio * curr.cantidad), 0)
+let resultado = `El total de sus productos asciende a ${sum}`
+
+console.log(resultado)
+
