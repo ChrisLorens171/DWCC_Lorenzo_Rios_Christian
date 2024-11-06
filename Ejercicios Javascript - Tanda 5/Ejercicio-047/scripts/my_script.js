@@ -28,7 +28,7 @@ const carrito = [
     { producto: "yogur", precio: 2, cantidad: 50},
 ]
 
-const sum = carrito.reduce((prev, curr) => prev + (curr.precio * curr.cantidad), 0)
+const sum = carrito.reduce((prev, actual) => prev + (actual.precio * actual.cantidad), 0)
 let resultado = `El total de sus productos asciende a ${sum}`
 
 console.log(resultado)

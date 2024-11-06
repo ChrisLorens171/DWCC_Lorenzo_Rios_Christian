@@ -47,14 +47,31 @@ const coleccionAlbunes = {
 };
 
 function actualizarAlbunes(coleccion, id, prop, valor) {
+
+  if (valor == "") {
+    delete coleccion[id][prop]
+
+  } else if (prop != "pistas") {
+    coleccion[id][prop] = valor;
+
+  } else {
+    if (!coleccion[id].hasOwnProperty("pistas")) {
+      coleccion[id]["pistas"] = [valor]
+
+    } else if (!coleccion[id]["pistas"].includes(valor)) {   
+      coleccion[id]["pistas"].push(valor)
+    }
+  }
+
   return coleccion;
 }
 
 actualizarAlbunes(coleccionAlbunes, 5439, "artista", "ABBA");
-actualizaAlbules(coleccion, 5439, "pistas", "Take a Chance on Me")
-actualizaAlbules(coleccion, 2548, "artista", "")
-actualizaAlbules(coleccion, 1245, "pistas", "Addicted to Love")
-actualizaAlbules(coleccion, 2468, "pistas", "Free")
-actualizaAlbules(coleccion, 2548, "pistas", "")
-actualizaAlbules(coleccion, 1245, "titulo", "Riptide")
+actualizarAlbunes(coleccionAlbunes, 5439, "pistas", "Take a Chance on Me")
+actualizarAlbunes(coleccionAlbunes, 2548, "artista", "")
+actualizarAlbunes(coleccionAlbunes, 1245, "pistas", "Addicted to Love")
+actualizarAlbunes(coleccionAlbunes, 2468, "pistas", "Free")
+actualizarAlbunes(coleccionAlbunes, 2548, "pistas", "")
+actualizarAlbunes(coleccionAlbunes, 1245, "titulo", "Riptide")
+console.log(coleccionAlbunes)
 

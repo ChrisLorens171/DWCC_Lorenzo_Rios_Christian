@@ -18,3 +18,18 @@ import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos
 
 let cadena = solicitarDato("Introduce una cadena: ", "string");
 
+function contarVocales () {
+
+    // Defines un objeto con las vocales en 0
+    const frecuenciaVocales = {"a": 0,"e": 0,"i": 0,"o": 0,"u": 0}
+    const keys = Object.keys(frecuenciaVocales)
+
+    return [...cadena.toLowerCase()].reduce((contador, letra) => {
+        if (keys.includes(letra)) {
+            contador[letra] += 1;
+        }
+        return contador;
+    }, frecuenciaVocales)
+}
+
+console.log(contarVocales(cadena));
