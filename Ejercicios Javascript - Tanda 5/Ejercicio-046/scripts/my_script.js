@@ -24,3 +24,19 @@
  *   Salida  : Llama a las funciones creadas con diferentes criterios
  *
  ***************************************************************************************************************/
+
+const EMPLEADOS = [
+    {nombre: "Juan", apellidos: "Alonso Perez", puesto: "Gestor", fechaC: new Date("2016-12-31")},
+    {nombre: "Xian", apellidos: "Xuong", puesto: "Ingeniero de Software", fechaC: new Date("2016-10-05")},
+    {nombre: "Ana", apellidos: "Rodriguez Sánchez", puesto: "Programadora", fechaC: new Date("")},
+    {nombre: "Jose", apellidos: "Vega Leirós", puesto: "Desarrollador web", fechaC: new Date("")},
+    {nombre: "Marta", apellidos: "Martínez López", puesto: "Administrador de BD", fechaC: new Date("2015-12-18")}
+]
+
+function filtroEmpleados (empleados, propiedad, valor) {
+    valor = valor.toLowerCase()
+    return empleados.filter((empleados) => empleados[propiedad].toLowerCase().includes(valor))
+}
+
+
+console.log(ordernarCriterio(EMPLEADOS, "apellidos", "asc"))
