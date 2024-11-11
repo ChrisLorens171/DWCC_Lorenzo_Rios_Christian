@@ -117,3 +117,7 @@ article p {
     border-radius: 50%;
     background: white;
   } 
+
+  .seleccionado {
+    background-color: lightgray;
+  }

@@ -19,6 +19,9 @@ const comments=[]
     if($textArea.value.length) {
 
         const $article=$d.createElement("article")
+
+        $article.setAttribute("data-id",)
+        $article.dataset.comentarioId=
     
         const $h4=$d.createElement("h4")
         const $cabecera=$d.createTextNode(`Comentario ${nComentarios}`)
@@ -95,12 +98,12 @@ function renderComments(comments) {
         </article>`).join(``) */
 
     $comments.innerHTML=comments.reduce((anterior, actual, i) => anterior+`
-        <article>
-        <h4>Comentario ${i+1}</h4>
-        <p>${actual.texto}</p>
+        <article data-id=${actual.id}>
+            <h4 ${actual.selected?"class='seleccionado'" : ''}>Comentario ${i+1}</h4>
+            <p ${actual.selected?"class='seleccionado'" : ''}>${actual.texto}</p>
         </article>`,'')
 
-    $commentCount.innerHTML=comments.map((comments, i) => 
+    $commentCount.innerHTML=comments.map((comment, i) => 
         `<option value="${i}"> 
             ${i+1}
         </option)>`).join('')
@@ -112,21 +115,72 @@ function renderComments(comments) {
 $form.addEventListener("submit", ev => {
     ev.preventDefault()
 
-    if ($addComment.checked) {
-        const comment = {
-            id: new Date().getTime(),
-            texto: $textArea.value
+    // Comprobamos que el tengamos texto
+    if($textArea.value.length) {
+
+        // Si la opcion añadir comentario ($addComment) esta marcada
+        if ($addComment.checked) {
+
+            // Creamos otro comentario
+            const comment = {
+                id: new Date().getTime(),
+                texto: $textArea.value
+            }
+
+            // Metemos ese comentario en el array comments
+            comments.push(comment)
         }
-        
-        comments.push(comment)
+
     }
 
+    // Si la opcion Eliminar comentario ($deleteComment) esta marcada
     if ($deleteComment.checked) {
-        comments.splice($commentCount.value, 1)
+
+        // Comprobamos que el comentario exista
+        if(comments.length) {
+
+            // Eliminamos el comentario del array
+            comments.splice($commentCount.value, 1)
+        
+        }
+    }
+
+    if($textArea.value.length) {
+
+        if ($insertComment.checked) {
+            const comment = {
+                id: new Date().getTime(),
+                selected: false,
+                texto: $textArea.value
+            }
+            
+            comments.splice($commentCount.value,0,comment)
+        }
+
     }
 
     renderComments(comments)
 });
+
+$comments.addEventListener("click",e=> {
+    let target = ev.target
+
+    while(!target.dataset.id) {
+        target=target.parentElement
+    }
+
+    const comment=comments.find(el=>el.id == target.dataset.id)
+    comment.selected =! comment.selected
+    renderComments(comments)
+})
+
+$d.addEventListener("key", ev=> {
+    if (ev.key == "Delete") {
+        const selected=comments.filter(el=>el.selected)
+
+        selected.forEach(el=>comments.splice(comments.find(comment=>comment.id==el.id), 1))
+    }
+})
 
 /* $deleteComment.addEventListener("click", ev => {
     ev.preventDefault()
