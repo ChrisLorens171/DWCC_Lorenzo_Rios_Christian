@@ -33,10 +33,8 @@ const EMPLEADOS = [
     {nombre: "Marta", apellidos: "Martínez López", puesto: "Administrador de BD", fechaC: new Date("2015-12-18")}
 ]
 
-function filtroEmpleados (empleados, propiedad, valor) {
-    valor = valor.toLowerCase()
-    return empleados.filter((empleados) => empleados[propiedad].toLowerCase().includes(valor))
+function filtroEmpleados(empleados, propiedad, valor) { 
+    empleados.filter(el => el[propiedad].toLowerCase().includes(valor.toLowerCase()))
 }
 
-
-console.log(ordernarCriterio(EMPLEADOS, "apellidos", "asc"))
+console.log(filtroEmpleados(EMPLEADOS, "apellidos", "martínez"));

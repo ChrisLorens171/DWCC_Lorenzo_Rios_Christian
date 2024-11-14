@@ -24,25 +24,24 @@ import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos
 
 let n = 0
 let numeroA = Math.floor(Math.random() * (100)) + 1
-let contador = 0
+let contador = 1
 let mensaje = ""
 
 while (numeroA != n) {
+    alert(numeroA)
+    mensaje=`Has acertado! Has necesitado ${contador} intentos`
 
     n = solicitarDato("Introduce un numero entre 1 y 100: ", "integer")
-
+    
     if (n >= 1 && n <= 100) {
         contador++
     }
-
-    if (n > numeroA) {
+    
+    if (n < numeroA) {
         mensaje = "Es mayor"
-        console.log(mensaje)
-    } else if (n < numeroA) {
-        mensaje = "Es mayor"
-        console.log(mensaje)
+        
+    } else if (n > numeroA) {
+        mensaje = "Es menor"
     }
-
+    alert(mensaje)
 }
-
-alert(`Has acertado! Has necesitado ${contador} intentos`)

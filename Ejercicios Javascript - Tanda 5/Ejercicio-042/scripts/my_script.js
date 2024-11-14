@@ -10,7 +10,7 @@
  *   Salida  : El entero que falta en el array
  *
  ***************************************************************************************************************/
-let arrNumeros = [1,6,4,7,8,9,2]
+let arrNumeros = [1,6,4,7,8,9,2,5,10,11]
 
 let arrOrdenados = arrNumeros.sort()
 

@@ -4,8 +4,8 @@ import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos
 let cadena = solicitarDato("Introduce la cadena de aminoaciados: ", "string");
 let longitudMax = 0
 let longitud = 0
-let amino = ""
 let posicionMax = 0
+let amino = "" 
 
 function buscarAminosIguales(cadena,posicion){
     let i = posicion

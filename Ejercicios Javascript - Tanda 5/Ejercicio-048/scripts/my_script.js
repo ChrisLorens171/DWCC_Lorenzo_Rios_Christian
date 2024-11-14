@@ -26,7 +26,7 @@ function contarVocales () {
 
     return [...cadena.toLowerCase()].reduce((contador, letra) => {
         if (keys.includes(letra)) {
-            contador[letra] += 1;
+            contador[letra] += 1;0
         }
         return contador;
     }, frecuenciaVocales)

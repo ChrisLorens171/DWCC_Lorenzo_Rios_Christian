@@ -28,7 +28,8 @@ function generarMatriz(filas, columnas) {
 }
 
 let matrizAleatoria = generarMatriz(filas,columnas)
-let matrizTransversa = generarMatriz(columnas,filas)
+
+/* let matrizTransversa = generarMatriz(columnas,filas)
 
 for (let i = 0; i < matrizTransversa.length; i++) {
     for (let j = 0; j < matrizAleatoria.length; j++) {
@@ -38,4 +39,10 @@ for (let i = 0; i < matrizTransversa.length; i++) {
 }
 
 console.log(matrizAleatoria)
-console.log(matrizTransversa)
+console.log(matrizTransversa) */
+
+// Calculamos la traspuesta de la anterior directamente
+const traspuesta2=Array.from({length:filas},(el,i)=>Array.from({length:columnas},(el,j)=>matrizAleatoria[j][i]))
+
+console.log(matrizAleatoria,traspuesta2)
+console.log(matrizAleatoria)
