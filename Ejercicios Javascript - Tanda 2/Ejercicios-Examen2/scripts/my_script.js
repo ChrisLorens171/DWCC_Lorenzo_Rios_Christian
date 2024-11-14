@@ -16,11 +16,11 @@ if (nfichas <= 10000 && nfichas > 0) {
         i--
         suma-=i
     } while(suma!=nfichas)
-    console.log(i-1,j-1,i-j+1)
+    console.log(j-1,i-1,i-j+1)
 } 
 
 
-/* function contarFichas(fichasTotales,inicio){
+function contarFichas(fichasTotales,inicio){
     let suma=0
     let i=inicio
     while(suma<=fichasTotales){
@@ -40,4 +40,4 @@ if (nfichas <= 10000 && nfichas > 0) {
     }
 }
 
-console.log(contarFichas(nfichas,1)) */
+console.log(contarFichas(nfichas,1))

@@ -28,7 +28,6 @@ let contador = 1
 let mensaje = ""
 
 while (numeroA != n) {
-    alert(numeroA)
     mensaje=`Has acertado! Has necesitado ${contador} intentos`
 
     n = solicitarDato("Introduce un numero entre 1 y 100: ", "integer")
