@@ -16,20 +16,24 @@
  ***************************************************************************************************************/
 import solicitarDato from "../../../Ejercicios Javascript - Tanda 1/ValidarDatos.js";
 
+// Solicita la cadena al usuario
 let cadena = solicitarDato("Introduce una cadena: ", "string");
 
-function contarVocales () {
+// Función para contar vocales
+function contarVocales(cadena) {
+    // Definimos un objeto con las vocales inicializadas a 0
+    const frecuenciaVocales = { "a": 0, "e": 0, "i": 0, "o": 0, "u": 0 }
+    const keys = Object.keys(frecuenciaVocales) // Obtenemos las vocales como array
 
-    // Defines un objeto con las vocales en 0
-    const frecuenciaVocales = {"a": 0,"e": 0,"i": 0,"o": 0,"u": 0}
-    const keys = Object.keys(frecuenciaVocales)
-
+    // Usamos reduce para iterar sobre cada letra de la cadena en minúsculas
     return [...cadena.toLowerCase()].reduce((contador, letra) => {
         if (keys.includes(letra)) {
-            contador[letra] += 1;0
+            contador[letra] += 1 // Incrementamos el contador de la vocal encontrada
         }
-        return contador;
+        return contador // Devolvemos el objeto actualizado
     }, frecuenciaVocales)
 }
 
-console.log(contarVocales(cadena));
+// Imprime el resultado
+console.log(contarVocales(cadena))
+
