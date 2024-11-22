@@ -6,9 +6,10 @@ const $d=document,
         $template=$d.querySelector("#template-comentario").content,
         //$deleteComment=$d.querySelector("#deleteNode"),
         $commentCount=$d.querySelector("#commentCount"),
-        [$addComment,$deleteComment,$insertComment]=$d.getElementsByName("nodeAction")
+        [$addComment,$deleteComment,$insertComment, $changeComment]=$d.getElementsByName("nodeAction")
 
-const comments=[]
+let comments=JSON.parse(sessionStorage.
+    getItem("comentarios")) || []
 
     
 /* let nComentarios = 1 */
@@ -90,6 +91,7 @@ const comments=[]
     $textArea.focus();
 } */
     
+
 function renderComments(comments) {
     /* $comments.innerHTML=comments.map((comment, i)=>`
         <article>
@@ -124,11 +126,13 @@ $form.addEventListener("submit", ev => {
             // Creamos otro comentario
             const comment = {
                 id: new Date().getTime(),
+                selected: false,
                 texto: $textArea.value
             }
 
             // Metemos ese comentario en el array comments
             comments.push(comment)
+            sessionStorage.setItem("comentarios",JSON.stringify(comments))
         }
 
     }
@@ -141,7 +145,7 @@ $form.addEventListener("submit", ev => {
 
             // Eliminamos el comentario del array
             comments.splice($commentCount.value, 1)
-        
+            sessionStorage.setItem("comentarios",JSON.stringify(comments))
         }
     }
 
@@ -159,6 +163,13 @@ $form.addEventListener("submit", ev => {
 
     }
 
+    if($changeComment.checked){
+        if($textArea.value!=""){
+            comentarios[$commentCount.value].texto=$textarea.value
+            sessionStorage.setItem("comentarios",JSON.stringify(comentarios))
+        }
+    }
+
     renderComments(comments)
 });
 
@@ -171,6 +182,7 @@ $comments.addEventListener("click",ev=> {
 
     const comment=comments.find(el=>el.id == target.dataset.id)
     comment.selected =! comment.selected
+    sessionStorage.setItem("comentarios",JSON.stringify(comments))
     renderComments(comments)
 })
 
@@ -178,14 +190,12 @@ $d.addEventListener("key", ev=> {
     if (ev.key == "Delete") {
         const selected=comments.filter(el=>el.selected)
 
-        selected.forEach(el=>comments.splice(comments.find(comment=>comment.id==el.id), 1))
+        selected.forEach(el=>comments.splice(comments.findIndex(comment=>comment.id==el.id), 1))
+        sessionStorage.setItem("comentarios",JSON.stringify(comments))
         renderComments(comments)
     }
 })
 
-/* $deleteComment.addEventListener("click", ev => {
-    ev.preventDefault()
-
-    comments.pop()
+$d.addEventListener("DOMContentLoaded", ev=> {
     renderComments(comments)
-}) */
+})
