@@ -3,7 +3,7 @@ const $d = document,
       $tLibro = $d.querySelector("#template-libro").content,
       $resultado = $d.querySelector("#resultado"),
       $comprar = $d.querySelector("input[type=submit]"),
-      $limpiar = $d.querySelector("input[type=reset]")
+      $limpiar = $d.querySelector("input[type=reset]");
 
 const libros = [
     {
@@ -37,49 +37,32 @@ function renderLibros(libros) {
                 <strong>${libro.precio} &euro;</strong>
                 <input type="checkbox" name="libro" value="${libro.precio}" />
             </p>
-        </div>`).join('')
+        </div>`).join('');
 }
 
-renderLibros(libros)
+renderLibros(libros);
 
 // Función para manejar el evento de clic
 $libros.addEventListener("click", ev => {
-    const libroDiv = ev.target.closest(".libro")
+    const libroDiv = ev.target.closest(".libro");
     if (libroDiv) {
         const checkbox = libroDiv.querySelector("input[type=checkbox]");
 
         // Si se hace clic en cualquier parte del libro (no en el checkbox)
         if (!ev.target.matches("input[type=checkbox]")) {
-            checkbox.checked = !checkbox.checked
+            checkbox.checked = !checkbox.checked;
         }
 
         // Cambiar el estado del checkbox (marcar/desmarcar)
-        if (!ev.target.matches("input[type=checkbox]")) {
-            if (checkbox.checked) {
-                libroDiv.classList.add("seleccionado")
-                resultado += parseInt(checkbox.value)
-                
-            } else {
-                libroDiv.classList.remove("seleccionado")
-                resultado -= parseInt(checkbox.value)
-            }
-
-            $resultado.value = `${resultado}€`
+        if (checkbox.checked) {
+            libroDiv.classList.add("seleccionado");
+            resultado += parseInt(checkbox.value);
+        } else {
+            libroDiv.classList.remove("seleccionado");
+            resultado -= parseInt(checkbox.value);
         }
 
-        // Cambiar el estado del checkbox (marcar/desmarcar)
-        if (ev.target.matches("input[type=checkbox]")) {
-            if (checkbox.checked) {
-                libroDiv.classList.add("seleccionado")
-                resultado += parseInt(checkbox.value)
-                
-            } else {
-                libroDiv.classList.remove("seleccionado")
-                resultado -= parseInt(checkbox.value)
-            }
-
-            $resultado.value = `${resultado}€`
-        }
+        $resultado.value = `${resultado}€`;
     }
 });
 
@@ -94,9 +77,18 @@ $comprar.addEventListener("click", (ev) => {
     }
 });
 
-$limpiar.addEventListener("click", (ev) => {
-    const libroDiv = ev.target.closest(".libro")
+$limpiar.addEventListener("click", () => {
+    // Desmarcar todos los checkboxes
+    $libros.querySelectorAll("input[type=checkbox]").forEach(checkbox => {
+        checkbox.checked = false;
+    });
 
-    libroDiv.classList.remove("seleccionado")
-    resultado = 0
+    // Remover clase "seleccionado" de todos los libros
+    $libros.querySelectorAll(".libro").forEach(libroDiv => {
+        libroDiv.classList.remove("seleccionado");
+    });
+
+    // Reiniciar el resultado
+    resultado = 0;
+    $resultado.value = `${resultado}€`;
 });
