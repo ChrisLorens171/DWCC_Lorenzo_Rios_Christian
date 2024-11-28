@@ -66,7 +66,7 @@ $libros.addEventListener("click", ev => {
     }
 });
 
-$comprar.addEventListener("click", (ev) => {
+$comprar.addEventListener("click", ev => {
     ev.preventDefault();
 
     // Si el total es 0, significa que no hay nada en el carrito
