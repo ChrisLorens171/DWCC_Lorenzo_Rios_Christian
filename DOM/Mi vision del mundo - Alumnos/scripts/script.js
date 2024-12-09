@@ -1,5 +1,6 @@
 const $d = document,
-        panels = $d.querySelectorAll('.panel')
+        $panels = $d.querySelectorAll('.panel'),
+        $container = $d.querySelector('.container')
 
 const datos=[
     {
@@ -29,9 +30,10 @@ const datos=[
     }
 ]
 
+/* Version 1 */
 
 function ponerActive() {
-    panels.forEach(panel => {
+    $panels.forEach(panel => {
 
         panel.addEventListener('click', () => {
             quitarActive()
@@ -42,10 +44,39 @@ function ponerActive() {
 }
 
 function quitarActive() {
-    panels.forEach(panel => {
+    $panels.forEach(panel => {
         panel.classList.remove('active')
     })
 }
 
-ponerActive()
+/* ponerActive() */
+
+/* Version 2 */
+
+/* function removeActiveClasses() {
+
+    $panels.forEach(el => el.classList.remove('active'));
+
+}
+
+$container.addEventListener('click', ev => {
+    if (ev.target.classList.contains('panel')) {
+
+        removeActiveClasses();
+        ev.target.classList.add('active');
+
+    }
+}); */
+
+/* Version 3 */
+
+$container.innerHTML=datos.reduce((anterior,actual)=>anterior+`
+    <div class="panel">       
+        <img src="${actual.url}" class="imagen-panel" alt="Foto de la comida">
+        <h3>${actual.titulo}</h3>     
+    </div>
+`,'')
+
+
+
 
