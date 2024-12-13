@@ -1,6 +1,4 @@
-const $d = document,
-        $panels = $d.querySelectorAll('.panel'),
-        $container = $d.querySelector('.container')
+const $d = document
 
 const datos=[
     {
@@ -32,51 +30,66 @@ const datos=[
 
 /* Version 1 */
 
-function ponerActive() {
-    $panels.forEach(panel => {
+/* $d.addEventListener("DOMContentLoaded",ev=>{
+    const $paneles=$d.querySelectorAll(".panel")
 
-        panel.addEventListener('click', () => {
-            quitarActive()
-            panel.classList.add('active')
+    $paneles.forEach(panel=>
+        panel.addEventListener("click",ev=>{
+            if(!ev.target.classList.contains("active")) {
+                $panelActivo=$d.querySelector(".active")
+                $panelActivo.classList.remove("active")
+                ev.target.classList.add("active")
+            }
+
         })
-    
-    })
-}
-
-function quitarActive() {
-    $panels.forEach(panel => {
-        panel.classList.remove('active')
-    })
-}
-
-/* ponerActive() */
+    )
+}) */
 
 /* Version 2 */
 
-/* function removeActiveClasses() {
+/* $d.addEventListener("DOMContentLoaded", ev=> {
+    const $container=$d.querySelector(".container")
+    
+    $container.addEventListener("click", ev=> {
+        //ev.stopPropagation()
+        if (ev.target.classList.contains("panel")) {
+            if(!ev.target.classList.contains("active")) {
+                const $panelActivo=$d.querySelector(".active")
+                $panelActivo.classList.remove("active")
+                ev.target.classList.add("active")
+            }
+        }
+    })
+})
 
-    $panels.forEach(el => el.classList.remove('active'));
-
-}
-
-$container.addEventListener('click', ev => {
-    if (ev.target.classList.contains('panel')) {
-
-        removeActiveClasses();
-        ev.target.classList.add('active');
-
-    }
-}); */
+$d.addEventListener("click",ev=>{
+    alert("Que pesao!")
+}) */
 
 /* Version 3 */
 
-$container.innerHTML=datos.reduce((anterior,actual)=>anterior+`
-    <div class="panel">       
-        <img src="${actual.url}" class="imagen-panel" alt="Foto de la comida">
-        <h3>${actual.titulo}</h3>     
-    </div>
-`,'')
+$d.addEventListener("DOMContentLoaded", ev=> {
+    const $container=$d.querySelector(".container")
 
+    $container.innerHTML=datos.reduce((anterior,actual)=>anterior+`
+        <div class="panel" style ="background-image: url('${actual.url}');">       
+            <h3>${actual.titulo}</h3>     
+        </div>`,'')
 
+    $container.querySelector(".panel").classList.add("active")
+    
+    $container.addEventListener("click", ev=> {
+        //ev.stopPropagation()
+        if (ev.target.classList.contains("panel")) {
+            if(!ev.target.classList.contains("active")) {
+                const $panelActivo=$d.querySelector(".active")
+                $panelActivo.classList.remove("active")
+                ev.target.classList.add("active")
+            }
+        }
+    })
+})
+
+/* Version 4 */
 
 
