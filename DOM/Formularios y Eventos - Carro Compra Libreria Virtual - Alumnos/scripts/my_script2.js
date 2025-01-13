@@ -37,7 +37,7 @@ function renderLibros(libros) {
                 <strong>${libro.precio} &euro;</strong>
                 <input type="checkbox" name="libro" value="${libro.precio}" />
             </p>
-        </div>`).join('');
+        </div>`).join('')
 }
 
 renderLibros(libros);

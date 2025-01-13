@@ -8,28 +8,43 @@ const $d = document,
         $simbolosCheckbox = $d.getElementById("simbolos"),
         $generarBtn = $d.getElementById("generar")
 
+const aleatorio=(min,max)=>parseInt(min+(max-min)*Math.random())
+
+function desordenar(vector){
+    const vectorCopy=[...vector]
+    const solucion=[]
+
+    let i=0
+    while (vectorCopy.length) {
+        let indice=aleatorio(0,vectorCopy.length)
+        solucion[i]=vectorCopy[indice]
+        vectorCopy.splice(indice,1)
+        i++
+    }
+    return solucion
+}
+
 function generarContra(longitud, mayusculas, minusculas, numeros, simbolos) {
-    let opciones = ""
-    let contra = ""
+    const opciones = []
+    const contra = []
 
-    opciones += mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    opciones += minusculas = "abcdefghijklmnopqrstuvwxyz"
-    opciones += numeros = "1234567890"
-    opciones += simbolos = ":_¨Ç^*¿?'¡=)(/&%$."
+    mayusculas&&opciones.push("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(''))
+    minusculas&&opciones.push("abcdefghijklmnopqrstuvwxyz".split(''))
+    numeros&&opciones.push("1234567890".split(''))
+    simbolos&&opciones.push(":_¨Ç^*¿?'¡=)(/&%$.".split(''))
 
-    if (opciones = "") {
-        contra = "Marca algo manin"
-    } else {
-        let array = opciones.split("")
-        
-        while (longitud > 0) {
-            contra = array[Math.floor(Math.random() * array.length)]
-            longitud--
+    if (opciones.length) {
+        while (contra.length<longitud) {
+            opciones.forEach(opcion=>{
+                if (contra.length<longitud) {
+                    contra.push(opcion[aleatorio(0,opcion.length)])
+                }
+            })
         }
-
+        contra.splice(0,contra.length,...desordenar(contra)) 
     }
 
-    return contra
+    return contra.join('')
 }
 
 $generarBtn.addEventListener("click", ev=>{
@@ -39,10 +54,10 @@ $generarBtn.addEventListener("click", ev=>{
     $resultado.textContent = contra
 })
 
-$copiar.addEventListener("click",ev=>{
+$portapapeles.addEventListener("click",ev=>{
     ev.preventDefault();
     
-    let portapapeles=$resultado.textContent
+    let portapapeles = $resultado.textContent
     navigator.clipboard.writeText(portapapeles);
 })
 
