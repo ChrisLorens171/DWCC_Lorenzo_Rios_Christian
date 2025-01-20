@@ -1,0 +1,99 @@
+const cursos=[
+    {
+        id:0,
+        src:"assets/img/curso1.jpg",
+        title:"HTML5, CSS3, JavaScript para Principiantes",
+        teacher:"Fernanda Zahory",
+        oldPrice:200,
+        newPrice:15
+    },
+    {
+        id:1,
+        src:"assets/img/curso1.jpg",
+        title:"Photoshop avanzado",
+        teacher:"Luis Miguel",
+        oldPrice:230,
+        newPrice:15
+    },
+    {
+        id:2,
+        src:"assets/img/curso1.jpg",
+        title:"Cocina Mexica",
+        teacher:"Chef Oropeza",
+        oldPrice:210,
+        newPrice:15
+    },
+    {
+        id:3,
+        src:"assets/img/curso1.jpg",
+        title:"Excel Experto",
+        teacher:"Ruben Blades",
+        oldPrice:350,
+        newPrice:15
+    },
+    {
+        id:4,
+        src:"assets/img/curso1.jpg",
+        title:"Giutarra facil",
+        teacher:"Fernanda Zahory",
+        oldPrice:150,
+        newPrice:15
+    },
+    {
+        id:5,
+        src:"assets/img/curso1.jpg",
+        title:"Illustrator para Diseñadores",
+        teacher:"Leonardo",
+        oldPrice:200,
+        newPrice:15
+    },
+    {
+        id:6,
+        src:"assets/img/curso1.jpg",
+        title:"AutoCAD",
+        teacher:"Fernanda Zahory",
+        oldPrice:400,
+        newPrice:15
+    },
+    {
+        id:7,
+        src:"assets/img/curso1.jpg",
+        title:"Word para principiantes",
+        teacher:"Luis Antonio",
+        oldPrice:200,
+        newPrice:15
+    },
+    {
+        id:8,
+        src:"assets/img/curso1.jpg",
+        title:"Curso de Diseño WEB",
+        teacher:"Fernanda Zahory",
+        oldPrice:450,
+        newPrice:15
+    },
+    {
+        id:9,
+        src:"assets/img/curso1.jpg",
+        title:"Aprende a Crear Macros Excel",
+        teacher:"Fernanda Zahory",
+        oldPrice:400,
+        newPrice:15
+    },
+    {
+        id:10,
+        src:"assets/img/curso1.jpg",
+        title:"Animaciones en Power Point",
+        teacher:"Fernanda Zahory",
+        oldPrice:150,
+        newPrice:15
+    },
+    {
+        id:11,
+        src:"assets/img/curso1.jpg",
+        title:"Edicion de audio profesional",
+        teacher:"Fernanda Zahory",
+        oldPrice:200,
+        newPrice:15
+    },
+]
+

@@ -77,57 +77,46 @@ const carrito=[
 
 const $d = document,
       $productos = $d.querySelector(".productos"),
-      $carro = $d.querySelector(".cart-productos"),
-      $countProduct = $d.querySelector(".count-product"),
-      $priceTotal = $d.querySelector(".price-total"),
-      $cartContainer = $d.querySelector(".card-items")
+      $cartProductos=$d.querySelector(".cart-productos"),
+      $countProduct=$d.querySelector(".count-product")
 
-$d.addEventListener("DOMContentLoaded", ev=> {
+function renderCarrito(carrito) {
+  $countProduct.textContent=carrito.reduce((anterior,actual)=>anterior+actual.cantidad,0)
+  $cartProductos.innerHTML=carrito.map(productoCarrito=>{
+    
+    return `
+    <div class="item">
+      <img src="#" alt="#" />
+      <div class="item-content">
+        <h5><!-- Nombre del producto --></h5>
+        <h5 class="cart-price"><!-- Precio de producto --></h5>
+        <h6>
+          Cantidad: <span><!-- Cantidad --></span>
+        </h6>
+      </div>
+      <span class="delete-product" data-id="#">X</span>
+    </div>
+  `}).join('')
+}
 
-  function renderProductos (productos) {
-    $productos.innerHTML=productos.map(producto =>`
-      <div class="producto">
-        <div>
-          <img src="${producto.img}" alt="#" />
-          <p>
-            <span>${producto.precio}</span>€
-          </p>
-        </div>
-        <p class="title">${producto.nombre}</p>
-        <a href="#" class="btn-add-cart" data-id=${producto.id}>Comprar !</a>
-      </div>`).join('')
-  }
-  
-  // Renderiza el carrito con los productos añadidos
-  function renderCarrito() {
-    $cartContainer.innerHTML = carrito.map(item => {
-      const producto = productos.find(p => p.id == item.productoId)
-      return `
-        <div class="item">
-          <img src="${producto.img}" alt="${producto.nombre}" />
-          <div class="item-content">
-            <h5>${producto.nombre}</h5>
-            <h5 class="cart-price">${producto.precio} €</h5>
-            <h6>Cantidad: <span>${item.cantidad}</span></h6>
-          </div>
-          <span class="delete-product" data-id="${item.productoId}">X</span>
-        </div>`
-    }).join("")
-  }
+function renderProductos(productos) {
+  $productos.innerHTML=productos.reduce((anterior,actual) => anterior+`
+    <div class="producto">
+      <div>
+        <img src="${actual.img}" alt="#" />
+        <p>
+          <span>${actual.precio}</span>€
+        </p>
+      </div>
+      <p class="title">${actual.nombre}</p>
+      <a href="#" class="btn-add-cart">Comprar !</a>
+    </div>
+  `,'')
+}
 
-  
-  $carro.addEventListener("click", () => {
-    if ($cartContainer.style.display == "block") {
-
-      $cartContainer.style.display = "none";
-    } else {
-
-      $cartContainer.style.display = "block";
-
-    }
-  })
-  
+$d.addEventListener("DOMContentLoaded",ev=> {
   renderProductos(productos)
-  renderCarrito(carrito)
 })
+      
+
 
