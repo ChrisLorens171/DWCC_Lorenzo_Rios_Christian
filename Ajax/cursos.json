@@ -95,49 +95,13 @@
       "teacher": "Fernanda Zahory",
       "oldPrice": "200",
       "newPrice": "15"
-    },
-    {
-      "id": "8a3f",
-      "src": "assets/img/curso1.jpg",
-      "title": "Christian ama a los negros",
-      "teacher": "Ongombo Ugungulele",
-      "oldPrice": "69",
-      "newPrice": "69"
-    },
-    {
-      "id": "5",
-      "src": "assets/img/curso1.jpg",
-      "title": "Photoshop avanzado",
-      "teacher": "the herta la mejor",
-      "oldPrice": "666",
-      "newPrice": "666"
-    },
-    {
-      "id": "7",
-      "src": "assets/img/curso1.jpg",
-      "title": "Photoshop avanzado",
-      "teacher": "selle la mama",
-      "oldPrice": "666",
-      "newPrice": "666"
     }
   ],
-  "usuarios":[{
-    "id":"1",
-    "email":"calgogalego@gmail.com"
-  }
+  "usuarios": [
+    {
+      "id": "1",
+      "email": "calgogalego@gmail.com"
+    }
   ],
-  "carritos":[
-   {
-    "id":"1",
-    "usuarioId":"1",
-    "cantidad":"1",
-    "cursoId":"3"
-   },
-   {
-   "id":"2",
-    "usuarioId":"1",
-    "cantidad":"1",
-    "cursoId":"15"
-   }
-  ]
+  "carritos": []
 }

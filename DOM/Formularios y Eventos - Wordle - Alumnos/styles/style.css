@@ -1,0 +1,59 @@
+body {
+  background: #343434;
+  font-family: Oswald, Verdana, sans-serif;
+}
+
+h1{
+  text-align: center;
+  color:antiquewhite;
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  text-decoration-line: underline;
+  text-decoration-color: white;
+  text-decoration-style: dotted;
+  text-underline-offset: 12px;
+}
+
+.juego {
+  text-align: center;
+  max-width: 500px;
+  margin: 10px auto;
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.comprobar {
+  height: 100%;
+}
+
+.fila {
+  margin: 10px;
+}
+
+input {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+.letras {
+  display: flex;
+  gap: 2px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.letra {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+button {
+  font-family: Oswald, Verdana, sans-serif;
+  background-color:darkslategrey;
+  color: antiquewhite;
+  padding: 6px;
+  border-radius: 5px;
+}
