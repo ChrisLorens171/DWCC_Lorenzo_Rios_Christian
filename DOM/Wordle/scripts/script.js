@@ -1,22 +1,21 @@
 const $d = document,
       $filas = $d.querySelectorAll(".fila"),
-      $letras = $d.querySelectorAll("input")
+      $letras = $d.querySelector(".letras")
+
+const abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
+
       
-      function comprobarIntento(intento, palabraSecreta) {
-        const letrasSecretas = palabraSecreta.toUpperCase().split('');
+function comprobarIntento(intento, palabraSecreta) {
+    const letrasSecretas = palabraSecreta.toUpperCase().split('');
+    console.log(intento)
         
-        intento.forEach((input, index) => {
-            const letraIntento = input.value.toUpperCase();
-            
-            if (letrasSecretas[index] === letraIntento) {
-                input.style.backgroundColor = 'lightgreen';
-            } else if (letrasSecretas.includes(letraIntento)) {
-                input.style.backgroundColor = 'yellow';
-            } else {
-                input.style.backgroundColor = 'lightcoral';
-            }
-        });
-    }
+}
+
+function renderLetras(abecedario) {
+    $letras.innerHTML = abecedario.map(letra=>`
+        <span class="letra">${letra}</span>
+    `).join('') 
+}
 
 $d.addEventListener("DOMContentLoaded", ev=>{
     ev.preventDefault()
@@ -66,6 +65,8 @@ $d.addEventListener("DOMContentLoaded", ev=>{
             })
         })
     })
+
+    renderLetras(abecedario)
 
 })
       
