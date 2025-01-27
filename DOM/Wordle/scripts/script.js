@@ -5,11 +5,42 @@ const $d = document,
 const abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
 
       
-function comprobarIntento(intento, palabraSecreta) {
-    const letrasSecretas = palabraSecreta.toUpperCase().split('');
-    console.log(intento)
-        
+function comprobarIntento(intento, palabraSecreta, $inputs, abecedario) {
+    const palabraArray = palabraSecreta.toUpperCase().split('')
+
+    intento.forEach((el, id) => {
+        const letra = el.toUpperCase()
+        const indexAbecedario = abecedario.findIndex(e => e == letra)
+
+        if (palabraArray.includes(letra)) {
+            if (palabraArray[id] == letra) {
+                $inputs[id].style.backgroundColor = "LightGreen"
+            } else {
+                $inputs[id].style.backgroundColor = "Yellow"
+            }
+        } else {
+            $inputs[id].style.backgroundColor = "#e43d19"
+            $inputs[id].style.color = "white"
+
+            // Cambia color en abecedario
+            $d.querySelector(`.letras span:nth-child(${indexAbecedario + 1})`).style.backgroundColor = "#e43d19"
+            $d.querySelector(`.letras span:nth-child(${indexAbecedario + 1})`).style.color = "white"
+        }
+
+        // Deshabilita el input actual
+        $inputs[id].disabled = true;
+    })
+
+    // Verifica si acertaron toda la palabra
+    if (intento.every((el, i) => el == palabraArray[i])) {
+        alert("Acertaste")
+        $filas.forEach(el=>{
+            $button = el.querySelector(".comprobar")
+            $button.disabled=true
+        })
+    }
 }
+
 
 function renderLetras(abecedario) {
     $letras.innerHTML = abecedario.map(letra=>`
@@ -20,7 +51,9 @@ function renderLetras(abecedario) {
 $d.addEventListener("DOMContentLoaded", ev=>{
     ev.preventDefault()
     const palabraSecreta = "MANOS"
-    
+
+    renderLetras(abecedario)
+
     $filas.forEach(el=>{
         const $comprobar = el.querySelector(".comprobar")
         const $inputs = el.querySelectorAll("input")
@@ -41,10 +74,11 @@ $d.addEventListener("DOMContentLoaded", ev=>{
             })
 
             if ($intento.length == 5) {
-                comprobarIntento($intento, palabraSecreta)
+                comprobarIntento($intento, palabraSecreta, $inputs, abecedario)
             } else {
                 alert("Introduce todas las letras.")
             }
+            console.log("Funciona")
         })
         
         $inputs.forEach((input, index) => {
@@ -65,8 +99,5 @@ $d.addEventListener("DOMContentLoaded", ev=>{
             })
         })
     })
-
-    renderLetras(abecedario)
-
 })
       
