@@ -4,7 +4,27 @@ const $d = document,
 
 const abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
 
-      
+const palabras = [
+    "MANGO", "RATON", "NIEVE", "PLUMA", "FLORO", "LUCES", "TIGRE", "NUBES", "PERRO", "GATOS",
+    "SALTO", "BOLSA", "JUEGO", "ROCAS", "PESCA", "VOLAR", "DULCE", "BRISA", "HOJAS", "TAPON",
+    "BROMA", "FUEGO", "GOLPE", "ZORRO", "TARDE", "GRANO", "MARCO", "CIELO", "VIDAS", "COSTA",
+    "RIEGO", "MUEVE", "FONDO", "BOTON", "NARIZ", "LIMON", "CARGA", "FRESA", "CALLE", "BEBER",
+    "PUNTO", "RAMPA", "HOJAL", "TALON", "FUERA", "BARRA", "SABOR", "NOCHE", "QUESO", "PATIO",
+    "FAROL", "MOTOR", "FALTA", "BANDA", "MUECA", "LAMPA", "GASTO", "HUEVO", "CIEGA", "FONIL",
+    "LLAVE", "SILLA", "TRUCO", "MODOS", "VISTA", "RANGO", "TIRAR", "MARCH", "LISTA", "PISOS",
+    "BROMO", "GIRAR", "CASCO", "LARGO", "RITMO", "SOBRE", "PARED", "MORIR", "ROMBO", "BINGO",
+    "FICHA", "BASAR", "JIRON", "PLAZA", "ROBOT", "RUMBO", "TOMAR", "HUMOS", "OCULT", "PINTA",
+    "NOBLE", "FIRME", "MARCH", "RADIO", "GORRA", "AVISO", "VIAJE", "MORAL", "PESOS", "SALSA",
+    "PINGA","PUTAS"
+]
+
+const palabraSecreta = palabraAleatoria(palabras)
+
+function palabraAleatoria(palabras) {
+    const indiceAleatorio = Math.floor(Math.random() * palabras.length)
+    return palabras[indiceAleatorio]
+}
+
 function comprobarIntento(intento, palabraSecreta, $inputs, abecedario) {
     const palabraArray = palabraSecreta.toUpperCase().split('')
 
@@ -19,12 +39,17 @@ function comprobarIntento(intento, palabraSecreta, $inputs, abecedario) {
                 $inputs[id].style.backgroundColor = "Yellow"
             }
         } else {
-            $inputs[id].style.backgroundColor = "#e43d19"
-            $inputs[id].style.color = "white"
+            $inputs[id].style.backgroundColor = "#e43d19";
+            $inputs[id].style.color = "white";
 
-            // Cambia color en abecedario
-            $d.querySelector(`.letras span:nth-child(${indexAbecedario + 1})`).style.backgroundColor = "#e43d19"
-            $d.querySelector(`.letras span:nth-child(${indexAbecedario + 1})`).style.color = "white"
+            // Cambia color en abecedario si existe
+            if (indexAbecedario !== -1) {
+                const letraElemento = $d.querySelector(`.letras span:nth-child(${indexAbecedario + 1})`);
+                if (letraElemento) {
+                    letraElemento.style.backgroundColor = "#e43d19";
+                    letraElemento.style.color = "white";
+                }
+            }
         }
 
         // Deshabilita el input actual
@@ -39,8 +64,17 @@ function comprobarIntento(intento, palabraSecreta, $inputs, abecedario) {
             $button.disabled=true
         })
     }
-}
 
+    // Si agoto todos sus intentos recibe el mensaje de fallo
+    const todasLasFilasDeshabilitadas = [...$filas].every(fila => {
+        const inputsFila = fila.querySelectorAll("input");
+        return [...inputsFila].every(input => input.disabled);
+    })
+
+    if (todasLasFilasDeshabilitadas) {
+        alert(`¡Fallaste! La palabra correcta era: ${palabraSecreta}`)
+    }
+}
 
 function renderLetras(abecedario) {
     $letras.innerHTML = abecedario.map(letra=>`
@@ -50,7 +84,6 @@ function renderLetras(abecedario) {
 
 $d.addEventListener("DOMContentLoaded", ev=>{
     ev.preventDefault()
-    const palabraSecreta = "MANOS"
 
     renderLetras(abecedario)
 
