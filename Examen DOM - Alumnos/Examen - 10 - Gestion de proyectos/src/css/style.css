@@ -1,0 +1,600 @@
+@charset "UTF-8";
+@import "./fonts.css";
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Compatibilidad con firefox */
+
+.skipper-anchor, .heading-anchor {
+  display: none;
+}
+
+/*=============================================
+=            Estilos generales            =
+=============================================*/
+:root {
+  --fuente-titulos: "Merriweather", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  --funte-cuerpo: "Poppins", "Courier New", Courier, monospace;
+  --color-boton1: #99F2D9;
+  --color-boton2: #f7b162;
+  --bg-primario: #D7D9D8;
+  --bg-secundario: #85a2a64e;
+  --color-texto-primario: #011126;
+  --color-texto-secundario: #334647d3;
+  --color-hover: #4BBFBF;
+  --h1-size: 2.3rem;
+  --transicion: all .5s ease-in-out;
+  font-family: var(--funte-cuerpo);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-texto-primario);
+
+}
+
+p {
+  padding: 0.5rem 0;
+}
+
+
+h2, h3, h4, h5 {
+  font-family: var(--fuente-titulos);
+}
+
+h1 {
+  font-size: var(--h1-size);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: var(--fuente-titulos);
+  position: absolute;
+  top: -100%;
+}
+
+h2 {
+  font-size: calc(var(--h1-size) - 0.5rem);
+}
+
+
+h2 img {
+  max-width: 50px;
+  position: absolute;
+  right: 0;
+}
+
+h2 img:hover {
+  transform: scale(1.3);
+}
+
+h3 {
+  color: var(--color-texto-secundario);
+  font-size: calc(var(--h1-size) - 1.3rem);
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+  transition: var(--transicion);
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background-color: #fafafa;
+}
+
+/* Estilos de lista-fila */
+.lista-fila {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .25rem;
+}
+
+.lista-fila img {
+  width: 30px;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+/* main>section {
+  transform: translate(0);
+  opacity: 1;
+  transition: all 1s ease-in-out;
+} */
+
+/*=====  End of Estilos generales  ======*/
+
+
+/*=============================================
+=            Estilos de la cabecera            =
+=============================================*/
+header, footer {
+  background-color: var(--bg-primario);
+  width: 100%;
+  /* height: 100px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 2rem;
+  gap: 1rem;
+}
+
+.logo {
+  max-width: 80px;
+}
+
+#perfil .ionicon {
+  width: 50px;
+  transition: var(--transicion);
+}
+
+#perfil:hover .ionicon {
+  fill: var(--color-hover);
+}
+
+/**** Estilos del menú ****/
+#menu {
+  order: 1;
+}
+
+#menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#menu a {
+  width: 100%;
+  color: var(--color-texto-primario);
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.activa {
+  font-weight: bold;
+}
+
+#menu a::after {
+  content: "";
+  width: 0;
+  height: 4px;
+  border-radius: 10px;
+  background-color: var(--bg-secundario);
+  transition: var(--transicion);
+}
+
+#menu li:hover a::after {
+  width: 100%;
+  background-color: var(--color-texto-primario);
+
+}
+
+
+/*=====  End of Estilos de la cabecera  ======*/
+
+
+/*=============================================
+=            Estilos del cuerpo - __item.cards__item           =
+=============================================*/
+main {
+  width: 100%;
+  height: max-content;
+  padding: 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.btn-tab--activa {
+  background-color: var(--color-texto-secundario);
+  color: white;
+}
+
+.btn-tab:hover {
+  background-color: var(--color-boton1);
+  box-shadow: 3px 4px 5px var(--color-texto-primario);
+}
+
+.btn-tab--activa:hover {
+  background-color: var(--color-texto-secundario);
+  color: white;
+}
+
+.campo-buscar input {
+  width: 300px;
+}
+
+.cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(auto, 320px));
+  justify-content: center;
+  gap: 2rem;
+}
+
+.cards__item {
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow: hidden;
+  position: relative;
+  transition: var(--transicion);
+}
+
+.cards__item figure {
+  height: 250px;
+  display: flex;
+  align-items: stretch;
+}
+
+.cards__item:hover {
+  background-color: var(--bg-secundario);
+}
+
+.cards__item:hover figure img {
+  transform: scale(1.2);
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+}
+
+.card-status::after {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f0f7";
+  font-size: 3rem;
+  position: absolute;
+  color: gold;
+  text-shadow: 4px 4px 5px black;
+  top: 0;
+  right: 1rem;
+}
+
+.card-status-delayed::after {
+  color: rgb(182, 6, 6);
+}
+
+/* Estilos de los botones */
+
+/* .botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+} */
+
+button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  font-weight: 500;
+  border: none;
+  outline: 1px solid var(--color-texto-primario);
+}
+
+.btn-change {
+  background-color: var(--color-boton1);
+}
+
+.btn-change:hover {
+  color: var(--color-boton1);
+  background-color: var(--color-texto-primario);
+}
+
+.btn-end {
+  background-color: #fa8562;
+}
+
+.btn-end:hover {
+  background-color: #f43b03;
+  color: white;
+}
+
+.list-btn {
+  width: max-content;
+  display: flex;
+  gap: 1rem;
+}
+
+
+.list-btn * {
+  font-size: 22px;
+  border: 0;
+  cursor: pointer;
+}
+
+.modify-btn {
+  color: #25a359;
+}
+
+.delete-btn {
+  color: #e74c3c;
+}
+
+.show-btn {
+  color: rgb(19, 122, 169);
+}
+
+.list-btn i:hover {
+  transform: scale(1.2);
+}
+
+/*=============================================
+=            Estilos del formulario            =
+=============================================*/
+form {
+  width: max-content;
+  background-color: var(--bg-primario);
+  padding: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 5px inset;
+}
+
+.ocultar {
+  display: none;
+}
+
+@keyframes desaparecer {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  50% {
+    display: none;
+  }
+
+  100% {
+    display: none;
+    transform: translateX(-200vw);
+    opacity: 0;
+  }
+
+}
+
+fieldset {
+  padding: .5rem 1rem;
+
+}
+
+fieldset legend {
+  font-weight: 600;
+  font-family: var(--fuente-titulos);
+  font-size: 1.2rem;
+}
+
+fieldset p {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+p.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem;
+}
+
+p.flex span {
+  display: flex;
+  gap: .5rem;
+}
+
+p>label {
+  font-size: 1.1rem;
+  width: 100px;
+  font-weight: 500;
+}
+
+p.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+input[type="text"] {
+  padding: .35rem .5rem;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: .5rem 1rem;
+}
+
+p.flex:is(input[type="checkbox"]) {
+  gap: .15rem;
+}
+
+input[type="checkbox"]+label {
+  width: 30px;
+  height: 30px;
+}
+
+input[type="checkbox"]:hover+label {
+  transform: scale(1.2);
+}
+
+#angular+label {
+  background: url(../img/logos/logo-angular.svg) no-repeat;
+}
+
+#html5+label {
+  background: url(../img/logos/logo-html5.svg) no-repeat;
+}
+
+#css3+label {
+  background: url(../img/logos/logo-css3.svg) no-repeat;
+}
+
+#python+label {
+  background: url(../img/logos/logo-python.svg) no-repeat;
+}
+
+#laravel+label {
+  background: url(../img/logos/logo-laravel.svg) no-repeat;
+}
+
+#ionic+label {
+  background: url(../img/logos/logo-ionic.svg) no-repeat;
+}
+
+#php+label {
+  background: url(../img/logos/logo-php.svg) no-repeat;
+  background-size: cover;
+}
+
+#react+label {
+  background: url(../img/logos/logo-react.svg) no-repeat;
+}
+
+#javascript+label {
+  background: url(../img/logos/logo-javascript.svg) no-repeat;
+}
+
+#sass+label {
+  background: url(../img/logos/logo-sass.svg) no-repeat;
+}
+
+#figma+label {
+  background: url(../img/logos/logo-figma.svg) no-repeat;
+}
+
+
+
+.btn-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  padding: .5rem 1rem;
+  font-family: var(--fuente-titulos);
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 5px 5px 10px gray;
+  color: var(--color-texto-primario);
+}
+
+#btn-submit {
+  background-color: var(--color-boton1);
+}
+
+#btn-submit:hover {
+  background-color: var(--color-texto-primario);
+  color: var(--color-boton1);
+}
+
+#btn-reset {
+  background-color: var(--color-boton2);
+}
+
+#btn-reset:hover {
+  background-color: var(--color-texto-primario);
+  color: var(--color-boton2);
+}
+
+/*=====  End of Estilos del formulario  ======*/
+
+
+
+
+
+
+/*=====  End of Estilos del cuerpo - __item.cards__item ======*/
+
+
+
+/*=============================================
+=            Estilos del footer            =
+=============================================*/
+footer {
+  font-size: 0.8rem;
+  color: var(--color-texto-secundario);
+  flex-direction: column-reverse;
+}
+
+
+/*=====  End of Estilos del footer  ======*/
+
+@media screen and (min-width: 720px) {
+  :root {
+    font-size: 16px;
+    --h1-size: 2.8rem;
+  }
+
+  header, footer {
+    flex-direction: row;
+  }
+
+  #menu {
+    order: 0;
+  }
+
+  h1 {
+    position: static;
+    flex: 1;
+    text-align: center;
+  }
+
+  main {
+    width: 90%;
+  }
+
+  .botones {
+    justify-content: flex-start;
+  }
+
+  p.grid {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+
+}

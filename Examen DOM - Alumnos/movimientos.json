@@ -1,0 +1,17 @@
+{
+    "movimientos":[
+        {
+            "id":"0",
+            "concepto":"asf",
+            "cantidad":10,
+            "estado":true
+        },
+        {
+            "id":"1",
+            "concepto":"adedef",
+            "cantidad":-210,
+            "estado":false
+        }
+    ]
+
+}

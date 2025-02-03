@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="./src/fontawesome/css/all.min.css"
+    />
+    <script src="scripts/my_script.js" defer></script>
+    <title>DesvNet</title>
+  </head>
+
+  <body>
+    <header>
+      <a href="#" class="logo" aria-label="Enlace a la página Principal">
+        <img
+          src="./assets/img/desvNet_transparent.png"
+          alt="DesvNet - Sharing Source Code"
+        />
+      </a>
+      <h1>DesvNet</h1>
+      <nav id="menu">
+        <ul>
+          <li><a href="#">Comunidad</a></li>
+          <li><a href="" class="activa">Proyectos</a></li>
+          <li><a href="">Suscripciones</a></li>
+        </ul>
+      </nav>
+      <a href="#" id="perfil" aria-label="Area personal">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon"
+          viewBox="0 0 512 512"
+        >
+          <path
+            d="M258.9 48C141.92 46.42 46.42 141.92 48 258.9c1.56 112.19 92.91 203.54 205.1 205.1 117 1.6 212.48-93.9 210.88-210.88C462.44 140.91 371.09 49.56 258.9 48zm126.42 327.25a4 4 0 01-6.14-.32 124.27 124.27 0 00-32.35-29.59C321.37 329 289.11 320 256 320s-65.37 9-90.83 25.34a124.24 124.24 0 00-32.35 29.58 4 4 0 01-6.14.32A175.32 175.32 0 0180 259c-1.63-97.31 78.22-178.76 175.57-179S432 158.81 432 256a175.32 175.32 0 01-46.68 119.25z"
+          />
+          <path
+            d="M256 144c-19.72 0-37.55 7.39-50.22 20.82s-19 32-17.57 51.93C191.11 256 221.52 288 256 288s64.83-32 67.79-71.24c1.48-19.74-4.8-38.14-17.68-51.82C293.39 151.44 275.59 144 256 144z"
+          />
+        </svg>
+      </a>
+    </header>
+    <main>
+      <h2>
+        Gestión de Proyectos
+        <a href="" class="add-project"
+          ><img src="./assets/img/add-project.svg" alt=""
+        /></a>
+      </h2>
+      <section id="formSection">
+        <h3>Añadir proyecto</h3>
+        <form action="#">
+          <fieldset>
+            <legend>Datos del proyecto</legend>
+            <p class="grid">
+              <label for="title">Proyecto</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Nombre del proyecto"
+                title="Nombre del proyecto"
+              />
+            </p>
+            <p class="grid">
+              <label for="src">Imagen</label>
+              <input
+                type="text"
+                name="src"
+                id="src"
+                placeholder="./imagen.png"
+              />
+            </p>
+            <p>
+              <label for="des">Descripción</label>
+              <textarea name="desc" id="desc"></textarea>
+            </p>
+          </fieldset>
+          <fieldset>
+            <legend>Tecnologías Empleadas</legend>
+            <p class="flex">
+              <input type="checkbox" name="tech" id="angular" value="angular" />
+              <label for="angular"></label>
+
+              <input type="checkbox" name="tech" id="html5" value="html5" />
+              <label for="html5"></label>
+
+              <input type="checkbox" name="tech" id="sass" value="sass" />
+              <label for="sass"></label>
+
+              <input type="checkbox" name="tech" id="python" value="python" />
+              <label for="python"></label>
+
+              <input
+                type="checkbox"
+                name="tech"
+                id="javascript"
+                value="javascript"
+              />
+              <label for="javascript"></label>
+
+              <input type="checkbox" name="tech" id="ionic" value="ionic" />
+              <label for="ionic"></label>
+
+              <input type="checkbox" name="tech" id="laravel" value="laravel" />
+              <label for="laravel"></label>
+
+              <input type="checkbox" name="tech" id="figma" value="figma" />
+              <label for="figma"></label>
+
+              <input type="checkbox" name="tech" id="css3" value="css3" />
+              <label for="css3"></label>
+
+              <input type="checkbox" name="tech" id="react" value="react" />
+              <label for="react"></label>
+
+              <input type="checkbox" name="tech" id="php" value="php" />
+              <label for="php"></label>
+            </p>
+          </fieldset>
+          <fieldset>
+            <legend>Fechas</legend>
+            <p class="flex">
+              <span>
+                <label for="startData">Fecha de inicio</label>
+                <input type="date" name="startData" id="startData" />
+              </span>
+              <span>
+                <label for="expectedData">Propuesta fin</label>
+                <input type="date" name="expectedData" id="expectedData" />
+              </span>
+              <span>
+                <label for="endData">Fin</label>
+                <input type="date" name="endData" id="endData" />
+              </span>
+            </p>
+          </fieldset>
+          <p class="btn-form">
+            <input type="submit" value="Guardar" class="btn" id="btn-submit" />
+            <input type="reset" value="Cancelar" class="btn" id="btn-reset" />
+          </p>
+        </form>
+      </section>
+      <section id="projectsSection">
+        <ul class="lista-fila">
+          <li><button class="btn-tab btn-tab--activa" id="tab-todos">Todos</button></li>
+          <li><button class="btn-tab" id="tab-desarrollo">En Desarrollo</button></li>
+          <li><button class="btn-tab" id="tab-retraso">Con Retraso</button></li>
+          <li><button class="btn-tab" id="tab-finalizados">Finalizados</button></li>
+        </ul>
+        <p class="campo-search">
+          <label for="search">Buscar proyecto</label>
+          <input type="text" name="search" id="search" />
+        </p>
+        <section id="projectsList">
+          <h3>Lista de proyectos</h3>
+          <ul class="cards">
+            <!-- Cards: Lista de proyectos -->
+          </ul>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <a href="#" class="logo" aria-label="Enlace a la página Principal">
+        <img
+          src="./assets/img/desvNet_transparent.png"
+          alt="DesvNet - Shareing Source Code"
+        />
+      </a>
+      <p>2024 &copy; Marina Vega Vázquez</p>
+      <ul class="lista-fila">
+        <li>
+          <a href="#"
+            ><img
+              src="./assets/img/logos/logo-X.svg"
+              alt="enlace a la página de X"
+          /></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img
+              src="./assets/img/logos/logo-Mastodon.svg"
+              alt="Enlace a Mastodon"
+          /></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img
+              src="./assets/img/logos/logo-youtube.svg"
+              alt="Enlace a youtube"
+          /></a>
+        </li>
+        <li>
+          <a href="#"
+            ><img
+              src="./assets/img/logos/logo-designernews.svg"
+              alt="Enlace a DeignerNews"
+          /></a>
+        </li>
+      </ul>
+    </footer>
+
+    <template id="template-card">
+      <li class="cards__item">
+        <!-- 
+        Si el proyecto está finalizado la clase del li es: cards__item
+        Si el proyecto está en desarrollo la clase del li es: cards__item card-status
+        Si el proyecto está retrasado la clase del li es: cards__item card-status card-status-delayed 
+        -->
+
+        <figure>
+            <img src="#" alt="#">
+        </figure>
+        <section class="card__content">
+        <h3><!-- Titulo del proyecto --></h3>
+        <ul class="lista-fila">
+          <!-- Items de tecnologias empleadas en el proyecto -->
+          <!-- template-item1 -->
+          <!-- template-item2 -->
+        </ul>
+        <p><!-- Descripción del proyecto --></p>
+        <p class="list-btn">
+                <!-- No todos los <i> estarán presentes en función del estado del proyecto -->
+                <i class="fa-solid fa-trash delete-btn"></i>
+                <i class="fa-solid fa-eye show-btn"></i>
+                <i class="fas fa-undo-alt modify-btn"></i>
+        </p>
+      </li>
+    </template>
+
+    <template id="template-item">
+      <li><img src="./assets/img/logos/logo-#.svg" alt="#"></li>       
+    </template>
+  </body>
+</html>
