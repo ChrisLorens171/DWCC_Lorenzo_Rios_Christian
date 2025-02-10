@@ -1,0 +1,18 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+i:hover {
+    cursor: pointer;
+}
+#tableBody .Excelente {
+    background-color: green;
+    color: white;
+}
+#tableBody .Bueno {
+    background-color: yellow;
+    color: black;
+}
+#tableBody .Malo {
+    background-color: red;
+    color: white;
+}
