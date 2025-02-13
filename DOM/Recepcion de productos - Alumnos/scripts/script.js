@@ -3,8 +3,8 @@ const $d = document,
       $anhadirProducto = $d.querySelector("#btnAdd"),
       $nombre = $d.querySelector("#name").value,
       $precio = $d.querySelector("#price").value,
-      $categoria = $d.querySelector("#category").value,
-      $estado = $d.querySelector("#condition").value
+      $categoria = $d.querySelector("#category"),
+      $estado = $d.querySelector("#condition")
 
 const productos = [
     {
@@ -60,8 +60,14 @@ const conditions = [
 }
 ]
 
-function renderCategorias(categories) {
+function renderCategorias(categories){
+    $categoria.innerHTML=categories.map(el=>
+    `<option value="${el.id}">${el.name}</option>`).join('')
+}
 
+function renderEstado(conditions){
+    $estado.innerHTML=conditions.map(el=>
+    `<option value="${el.id}">${el.name}</option>`).join('')
 }
 
 function renderConditions(conditions) {
@@ -88,8 +94,9 @@ function renderProductos(productos) {
 }
 
 $d.addEventListener("DOMContentLoaded",ev=>{
-
+    renderCategorias(categories)
     renderProductos(productos)
+    renderEstado(conditions)
 
     $anhadirProducto.addEventListener("click", ev=>{
         //console.log($nombre)
