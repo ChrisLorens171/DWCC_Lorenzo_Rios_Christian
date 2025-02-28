@@ -1,4 +1,4 @@
 export default {
     public:"pk_test_51QwhfpHXkfniOn73cONQAuopC7sDTXF6u0xkAmCBPheGmPmiT5mLF0OUEam880YjO9BgLR8YC2m3eHpGK8feXjDy00S67xMqbY",
-    private:"sk_test_51QwhfpHXkfniOn73EVERh5BJCkub3vgWUtK9WQv3L27jENBAK0jU2ZKpN1pdsfcxQ2x8ylcZS5Ts0xLHLfhLgmua00LeyFyinM"
+    secret:"sk_test_51QwhfpHXkfniOn73EVERh5BJCkub3vgWUtK9WQv3L27jENBAK0jU2ZKpN1pdsfcxQ2x8ylcZS5Ts0xLHLfhLgmua00LeyFyinM"
 }
