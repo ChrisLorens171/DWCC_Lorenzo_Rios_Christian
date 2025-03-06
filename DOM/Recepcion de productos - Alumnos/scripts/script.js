@@ -1,33 +1,20 @@
 const $d = document,
       $productos = $d.querySelector("#tableBody"),
       $anhadirProducto = $d.querySelector("#btnAdd"),
+      $limpiar = $d.querySelector("#btnClear"),
       $nombre = $d.querySelector("#name"),
       $precio = $d.querySelector("#price"),
       $categoria = $d.querySelector("#category"),
-      $estado = $d.querySelector("#condition")
+      $estado = $d.querySelector("#condition"),
+      $search = $d.querySelector("#search")
+
+let editando = false
+let idEditando = null
 
 const productos = [
-    {
-      "name": "Samsung",
-      "price": "200",
-      "categoryId": "1",
-      "conditionId": "1",
-      "id": 1
-    },
-    {
-      "name": "LG",
-      "price": "300",
-      "categoryId": "2",
-      "conditionId": "2",
-      "id": 2
-    },
-    {
-      "name": "Motorola",
-      "price": "350",
-      "categoryId": "3",
-      "conditionId": "3",
-      "id": 3
-    }
+    { "name": "Samsung", "price": "200", "categoryId": "1", "conditionId": "1", "id": 1 },
+    { "name": "LG", "price": "300", "categoryId": "2", "conditionId": "2", "id": 2 },
+    { "name": "Motorola", "price": "350", "categoryId": "3", "conditionId": "3", "id": 3 }
 ]
 
 const categories = [
@@ -42,6 +29,42 @@ const conditions = [
     { "name": "Malo", "id": "3" }
 ]
 
+function filtrarProductos() {
+    const texto = $search.value.trim().toLowerCase()
+    
+    const productosFiltrados = productos.filter(el =>
+        el.name.toLowerCase().includes(texto)
+    )
+
+    renderProductos(productosFiltrados)
+}
+
+function handleClickProductos(ev) {
+    if (ev.target.classList.contains("fa-trash")) {
+        // Eliminar producto
+        let id = parseInt(ev.target.dataset.id)
+        productos.splice(productos.findIndex(el => el.id === id), 1)
+        renderProductos()
+    } else if (ev.target.classList.contains("fa-edit")) {
+        // Editar producto
+        let id = parseInt(ev.target.dataset.id)
+        let producto = productos.find(el => el.id === id)
+
+        if (!producto) return
+
+        editando = true
+        idEditando = id
+
+        $nombre.value = producto.name
+        $precio.value = producto.price
+        $categoria.value = producto.categoryId
+        $estado.value = producto.conditionId
+
+        $anhadirProducto.textContent = "Actualizar Producto"
+        $limpiar.textContent = "Cancelar"
+    }
+}
+
 function renderCategorias() {
     $categoria.innerHTML = categories.map(el => 
         `<option value="${el.id}">${el.name}</option>`
@@ -54,7 +77,7 @@ function renderEstado() {
     ).join('')
 }
 
-function renderProductos() {
+function renderProductos(productos) {
     $productos.innerHTML = productos.map(el => {
         let categoria = categories.find(e => e.id == el.categoryId).name
         let condition = conditions.find(e => e.id == el.conditionId).name
@@ -78,9 +101,14 @@ function resetForm() {
     $precio.value = ""
     $categoria.selectedIndex = 0
     $estado.selectedIndex = 0
+    editando = false
+    idEditando = null
+
+    $anhadirProducto.textContent = "Añadir Producto"
+    $limpiar.textContent = "Limpiar Formulario"
 }
 
-function addProduct() {
+function addOrUpdateProduct() {
     const name = $nombre.value.trim()
     const price = $precio.value.trim()
     const categoryId = $categoria.value
@@ -91,37 +119,53 @@ function addProduct() {
         return
     }
 
-    const newProduct = {
-        id: productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1,
-        name,
-        price,
-        categoryId,
-        conditionId
+    if (editando) {
+        // Actualizar producto existente
+        let producto = productos.find(p=>p.id==idEditando)
+        if (producto) {
+            producto.name = name
+            producto.price = price
+            producto.categoryId = categoryId
+            producto.conditionId = conditionId
+        }
+    } else {
+        // Agregar nuevo producto
+        let newId = productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1
+
+        const newProduct = {
+            id: newId,
+            name,
+            price,
+            categoryId,
+            conditionId
+        }
+
+        productos.push(newProduct)
     }
 
-    productos.push(newProduct)
     renderProductos()
     resetForm()
 }
 
-$d.addEventListener("DOMContentLoaded",ev=>{
+$d.addEventListener("DOMContentLoaded", () => {
     renderCategorias()
-    renderProductos()
+    renderProductos(productos)
     renderEstado()
+
     
     $anhadirProducto.addEventListener("click", ev => {
         ev.preventDefault()
-        addProduct()
-
-        
+        addOrUpdateProduct()
     })
     
-    $productos.addEventListener("click",ev=>{
-        if(ev.target.classList.contains("fa-trash")) {
-            console.log("Borro")
-        } else {
-            console.log("Edito")
-        }
+    $limpiar.addEventListener("click", ev => {
+        ev.preventDefault()
+        resetForm()
     })
+    
+    $productos.addEventListener("click", handleClickProductos)
 
+    $search.addEventListener("input",ev=>{
+        filtrarProductos()
+    })
 })
