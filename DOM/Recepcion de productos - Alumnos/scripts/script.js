@@ -1,8 +1,8 @@
 const $d = document,
       $productos = $d.querySelector("#tableBody"),
       $anhadirProducto = $d.querySelector("#btnAdd"),
-      $nombre = $d.querySelector("#name").value,
-      $precio = $d.querySelector("#price").value,
+      $nombre = $d.querySelector("#name"),
+      $precio = $d.querySelector("#price"),
       $categoria = $d.querySelector("#category"),
       $estado = $d.querySelector("#condition")
 
@@ -28,53 +28,33 @@ const productos = [
       "conditionId": "3",
       "id": 3
     }
-  ]
+]
 
 const categories = [
-{
-    "name": "Teléfono",
-    "id": "1"
-},
-{
-    "name": "TV",
-    "id": "2"
-},
-{
-    "name": "Portátil",
-    "id": "3"
-}
+    { "name": "Teléfono", "id": "1" },
+    { "name": "TV", "id": "2" },
+    { "name": "Portátil", "id": "3" }
 ]
 
 const conditions = [
-{
-    "name": "Excelente",
-    "id": "1"
-},
-{
-    "name": "Bueno",
-    "id": "2"
-},
-{
-    "name": "Malo",
-    "id": "3"
-}
+    { "name": "Excelente", "id": "1" },
+    { "name": "Bueno", "id": "2" },
+    { "name": "Malo", "id": "3" }
 ]
 
-function renderCategorias(categories){
-    $categoria.innerHTML=categories.map(el=>
-    `<option value="${el.id}">${el.name}</option>`).join('')
+function renderCategorias() {
+    $categoria.innerHTML = categories.map(el => 
+        `<option value="${el.id}">${el.name}</option>`
+    ).join('')
 }
 
-function renderEstado(conditions){
-    $estado.innerHTML=conditions.map(el=>
-    `<option value="${el.id}">${el.name}</option>`).join('')
+function renderEstado() {
+    $estado.innerHTML = conditions.map(el => 
+        `<option value="${el.id}">${el.name}</option>`
+    ).join('')
 }
 
-function renderConditions(conditions) {
-    
-}
-
-function renderProductos(productos) {
+function renderProductos() {
     $productos.innerHTML = productos.map(el => {
         let categoria = categories.find(e => e.id == el.categoryId).name
         let condition = conditions.find(e => e.id == el.conditionId).name
@@ -93,14 +73,55 @@ function renderProductos(productos) {
     }).join('')
 }
 
+function resetForm() {
+    $nombre.value = ""
+    $precio.value = ""
+    $categoria.selectedIndex = 0
+    $estado.selectedIndex = 0
+}
+
+function addProduct() {
+    const name = $nombre.value.trim()
+    const price = $precio.value.trim()
+    const categoryId = $categoria.value
+    const conditionId = $estado.value
+
+    if (!name || !price || !categoryId || !conditionId) {
+        alert("Todos los campos son obligatorios.")
+        return
+    }
+
+    const newProduct = {
+        id: productos.length ? Math.max(...productos.map(p => p.id)) + 1 : 1,
+        name,
+        price,
+        categoryId,
+        conditionId
+    }
+
+    productos.push(newProduct)
+    renderProductos()
+    resetForm()
+}
+
 $d.addEventListener("DOMContentLoaded",ev=>{
-    renderCategorias(categories)
-    renderProductos(productos)
-    renderEstado(conditions)
+    renderCategorias()
+    renderProductos()
+    renderEstado()
+    
+    $anhadirProducto.addEventListener("click", ev => {
+        ev.preventDefault()
+        addProduct()
 
-    $anhadirProducto.addEventListener("click", ev=>{
-        //console.log($nombre)
         
-    }) 
-})
+    })
+    
+    $productos.addEventListener("click",ev=>{
+        if(ev.target.classList.contains("fa-trash")) {
+            console.log("Borro")
+        } else {
+            console.log("Edito")
+        }
+    })
 
+})
