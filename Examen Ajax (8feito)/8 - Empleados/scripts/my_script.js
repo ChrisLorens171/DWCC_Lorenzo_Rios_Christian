@@ -86,16 +86,12 @@ function ajax(options){
   }))
 }
 
-function cambiarVisibilidad() {
-  if($formulario.classList.contains("hidden")) {
-    $formulario.classList.remove("hidden")
-  } else {
+function verListadoEmpleados(visible) {
+  if (visible) {
     $formulario.classList.add("hidden")
-  }
-
-  if($listado.classList.contains("hidden")) {
     $listado.classList.remove("hidden")
   } else {
+    $formulario.classList.remove("hidden")
     $listado.classList.add("hidden")
   }
 }
@@ -121,15 +117,34 @@ function getData() {
   })
 }
 
-function delEmpleados(empleados,empleadoId) {
+function delEmpleado(empleadoId) {
   ajax({
     url: `${urlEmpleados}/${empleadoId}`,
     method: "DELETE",
     fExito:(json)=>{
       const empleadoIndex = empleados.findIndex(el=>el.id == empleadoId)
       empleados.splice(empleadoIndex,1)
-      
       renderEmpleados(empleados)
+    },
+    fError:(error)=>console.log(error)
+  })
+}
+
+function modEmpleado(empleado) {
+  verListadoEmpleados(false)
+  ajax({
+    url: `${urlEmpleados}/${empleado.id}`,
+    method: "PATCH ",
+    fExito:()=>{
+      const empleadoB = empleados.find(el=>el.id==empleado.id)
+
+      $formularioEmpleado["name"] = empleadoB.name
+      $formularioEmpleado["nif"] = empleadoB.nif
+      $formularioEmpleado["bornDate"] = empleadoB.bornDate
+      $formularioEmpleado["contractDate"] = empleadoB.contractDate
+      $formularioEmpleado["positionId"] = empleadoB.positionId
+      $formularioEmpleado["avatar"] = empleadoB.avatar
+
     },
     fError:(error)=>console.log(error)
   })
@@ -168,6 +183,7 @@ function renderCantidadEmpleados(empleados) {
 }
 
 function renderEmpleados(empleados) {
+  verListadoEmpleados(true)
   $table.innerHTML = empleados.reduce((anterior,actual,i)=>anterior+
   `
     <tr>
@@ -210,12 +226,17 @@ function filtrarEmpleados() {
 
 $table.addEventListener("click",ev=>{
   ev.preventDefault()
-  if(ev.target.classList.contains("btn-danger")) {
-    // Borrar empleados
-    delEmpleados(empleados,ev.target.dataset.id)
-  } else if(ev.target.classList.contains("btn-warning")) {
-    // Editar empleados
-
+  if (ev.target.dataset.id) {
+    let id=ev.target.dataset.id
+    if(ev.target.classList.contains("btn-danger")) {
+      // Borrar empleados
+      delEmpleado(id)
+    } else if(ev.target.classList.contains("btn-warning")) {
+      // Editar empleados
+      const empleado=empleados.find(el=>el.id==id)
+      console.log(empleado)
+      modEmpleado(empleado)
+    }
   }
 })
 
@@ -229,16 +250,16 @@ $formularioEmpleado["positionId"].addEventListener("change",ev=>{
 
 $botonAddUsuario.addEventListener("click",ev=>{
   $formularioEmpleado["salary"].disabled=true
-  cambiarVisibilidad()
+  verListadoEmpleados(false)
 })
 
 $botonAdd.addEventListener("click",ev=>{
   addEmpleados()
-  cambiarVisibilidad()
+  verListadoEmpleados(true)
 })
 
 $botonCancel.addEventListener("click",ev=>{
-  cambiarVisibilidad()
+  verListadoEmpleados(true)
 })
 
 $d.addEventListener("DOMContentLoaded",ev=>{
@@ -249,3 +270,4 @@ $d.addEventListener("DOMContentLoaded",ev=>{
     filtrarEmpleados()
   })
 })
+
