@@ -1,5 +1,6 @@
 const $d = document,
       $productos = $d.querySelector("#tableBody"),
+      $productosFooter = $d.querySelector("#tableFoot"),
       $anhadirProducto = $d.querySelector("#btnAdd"),
       $limpiar = $d.querySelector("#btnClear"),
       $nombre = $d.querySelector("#name"),
@@ -8,8 +9,8 @@ const $d = document,
       $estado = $d.querySelector("#condition"),
       $search = $d.querySelector("#search")
 
-let editando = false
 let idEditando = null
+let editando = null
 
 const productos = [
     { "name": "Samsung", "price": "200", "categoryId": "1", "conditionId": "1", "id": 1 },
@@ -37,6 +38,7 @@ function filtrarProductos() {
     )
 
     renderProductos(productosFiltrados)
+    renderFooter(productosFiltrados)
 }
 
 function handleClickProductos(ev) {
@@ -44,7 +46,7 @@ function handleClickProductos(ev) {
         // Eliminar producto
         let id = parseInt(ev.target.dataset.id)
         productos.splice(productos.findIndex(el => el.id === id), 1)
-        renderProductos()
+        renderProductos(productos)
     } else if (ev.target.classList.contains("fa-edit")) {
         // Editar producto
         let id = parseInt(ev.target.dataset.id)
@@ -63,6 +65,7 @@ function handleClickProductos(ev) {
         $anhadirProducto.textContent = "Actualizar Producto"
         $limpiar.textContent = "Cancelar"
     }
+    renderFooter(productos)
 }
 
 function renderCategorias() {
@@ -94,6 +97,31 @@ function renderProductos(productos) {
             </td>
         </tr>`
     }).join('')
+}
+
+function renderFooter(productos) {
+    if(!productos.length) {
+        $productosFooter.innerHTML = `
+            <tr>
+                    <td colspan="6">
+                    <h4 class="text-white bg-danger">No hay productos</h4>
+                    </td>
+            </tr>     `
+    } else {
+        $productosFooter.innerHTML = `
+            <tr>
+                <td colspan="6">
+                    <button
+                        id="btnVaciar"
+                        class="btn mb-1 mb-sm-0 btn-outline-danger"
+                        type="button"
+                    >
+                        Borrar Todos Los Productos
+                    </button>
+                </td>
+            </tr>
+        `
+    }
 }
 
 function resetForm() {
@@ -143,15 +171,16 @@ function addOrUpdateProduct() {
         productos.push(newProduct)
     }
 
-    renderProductos()
+    renderProductos(productos)
+    renderFooter(productos)
     resetForm()
 }
 
 $d.addEventListener("DOMContentLoaded", () => {
     renderCategorias()
-    renderProductos(productos)
     renderEstado()
-
+    renderProductos(productos)
+    renderFooter(productos)
     
     $anhadirProducto.addEventListener("click", ev => {
         ev.preventDefault()
@@ -164,6 +193,14 @@ $d.addEventListener("DOMContentLoaded", () => {
     })
     
     $productos.addEventListener("click", handleClickProductos)
+
+    $productosFooter.addEventListener("click",ev=>{
+        if(ev.target.id=="btnVaciar") {
+            productos.splice(0,productos.length)
+        } 
+        renderProductos(productos)
+        renderFooter(productos)
+    })
 
     $search.addEventListener("input",ev=>{
         filtrarProductos()
