@@ -130,24 +130,24 @@ function delEmpleado(empleadoId) {
   })
 }
 
-function modEmpleado(empleado) {
-  verListadoEmpleados(false)
-  ajax({
-    url: `${urlEmpleados}/${empleado.id}`,
-    method: "PATCH ",
-    fExito:()=>{
-      const empleadoB = empleados.find(el=>el.id==empleado.id)
-
-      $formularioEmpleado["name"] = empleadoB.name
-      $formularioEmpleado["nif"] = empleadoB.nif
-      $formularioEmpleado["bornDate"] = empleadoB.bornDate
-      $formularioEmpleado["contractDate"] = empleadoB.contractDate
-      $formularioEmpleado["positionId"] = empleadoB.positionId
-      $formularioEmpleado["avatar"] = empleadoB.avatar
-
+function updateEmpleados(empleadoId) {
+  let data={}
+  const fields=["name","nif","bornDate","contractDate","positionId","avatar"]
+  fields.forEach(field=>data[field]=$formularioEmpleado[field].value)
+  console.log(data)
+  /* ajax({
+    url: `${urlEmpleados}/${empleadoId}`,
+    method: "PATCH",
+    fExito:(json)=>{
+      console.log(json)
+      delete $botonAdd.dataset.id
+      let index=empleados.findIndex(empleado=>empleado.id==json.id)
+      empleados.splice(index,1,json)
+      renderEmpleados(empleados) 
     },
-    fError:(error)=>console.log(error)
-  })
+    fError:(error)=>console.log(error),
+    data
+  }) */
 }
 
 function addEmpleados() {
@@ -167,6 +167,16 @@ function addEmpleados() {
       positionId: $formularioEmpleado["positionId"].value,
     }
   })
+}
+
+function inputsEmpleado(empleado) {
+  verListadoEmpleados(false)
+
+  const fields=["name","nif","bornDate","contractDate","positionId","avatar"]
+  fields.forEach(field=>$formularioEmpleado[field].value=empleado[field])
+  $formularioEmpleado.salary.value=positions.find(position=>position.id==empleado.positionId).salary
+
+  $botonAdd.dataset.id = empleado.id
 }
 
 function calcularTrienio(contratado,salario) {
@@ -233,9 +243,9 @@ $table.addEventListener("click",ev=>{
       delEmpleado(id)
     } else if(ev.target.classList.contains("btn-warning")) {
       // Editar empleados
+      $botonAdd.textContent = "Actualizar"
       const empleado=empleados.find(el=>el.id==id)
-      console.log(empleado)
-      modEmpleado(empleado)
+      inputsEmpleado(empleado)
     }
   }
 })
@@ -254,12 +264,20 @@ $botonAddUsuario.addEventListener("click",ev=>{
 })
 
 $botonAdd.addEventListener("click",ev=>{
-  addEmpleados()
-  verListadoEmpleados(true)
+  ev.preventDefault()
+
+  let id=ev.target.dataset.id
+  if(id) {
+    let empleado = empleados.find(el=>el.id==id)
+    updateEmpleados(empleado.id)
+  } else {
+    addEmpleados()
+  }
 })
 
 $botonCancel.addEventListener("click",ev=>{
   verListadoEmpleados(true)
+  delete $botonAdd.dataset.id
 })
 
 $d.addEventListener("DOMContentLoaded",ev=>{
