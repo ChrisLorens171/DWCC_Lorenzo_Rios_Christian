@@ -135,7 +135,7 @@ function updateEmpleados(empleadoId) {
   const fields=["name","nif","bornDate","contractDate","positionId","avatar"]
   fields.forEach(field=>data[field]=$formularioEmpleado[field].value)
   console.log(data)
-  /* ajax({
+  ajax({
     url: `${urlEmpleados}/${empleadoId}`,
     method: "PATCH",
     fExito:(json)=>{
@@ -147,7 +147,7 @@ function updateEmpleados(empleadoId) {
     },
     fError:(error)=>console.log(error),
     data
-  }) */
+  })
 }
 
 function addEmpleados() {
@@ -193,32 +193,39 @@ function renderCantidadEmpleados(empleados) {
 }
 
 function renderEmpleados(empleados) {
-  verListadoEmpleados(true)
-  $table.innerHTML = empleados.reduce((anterior,actual,i)=>anterior+
-  `
-    <tr>
-      <th scope="row">${i+1}</th>
-      <td>${actual.name}</td>
-      <td>${calcYears(actual.bornDate)}</td>
-      <td>${actual.nif}</td>
-      <td>${positions.find(el=>el.id == actual.positionId).name}</td>
-      <td class="avatar">
-        <figure>
-          <img class="avatar-img" src="./assets/imgs/fotos_empleados/${actual.avatar}" alt="">
-        </figure>
-      </td>
-      <td>${calcularTrienio(calcYears(actual.contractDate),positions.find(el=>el.id == actual.positionId).salary)}&euro;</td>
-      <td class="acciones">
-        <a title="Editar datos del empleado" href="#"  ">
-          <img src="./assets/imgs/icons/pencil.svg" alt="" class="btn btn-warning" data-id="${actual.id}"> </a>
-        <a title="Eliminar datos del empleado" href="#"  >
-          <img src="./assets/imgs/icons/trash-can.svg" alt="" class="btn btn-danger" data-id="${actual.id}">
-        </a>
-      </td>
-    </tr>
-    `,'')
+  verListadoEmpleados(true);
+  
+  $table.innerHTML = empleados.reduce((anterior, actual, i) => {
+    const avatarPath = actual.avatar && actual.avatar.trim() != '' 
+      ? `./assets/imgs/fotos_empleados/${actual.avatar}` 
+      : null
+    
+    const avatarContent = avatarPath 
+      ? `<figure><img class="avatar-img" src="${avatarPath}" alt=""></figure>`
+      : '<span class="no-avatar">Sin avatar</span>'
 
-    renderCantidadEmpleados(empleados)
+    return anterior + `
+      <tr>
+        <th scope="row">${i+1}</th>
+        <td>${actual.name}</td>
+        <td>${calcYears(actual.bornDate)}</td>
+        <td>${actual.nif}</td>
+        <td>${positions.find(el => el.id == actual.positionId).name}</td>
+        <td class="avatar">${avatarContent}</td>
+        <td>${calcularTrienio(calcYears(actual.contractDate), positions.find(el => el.id == actual.positionId).salary)}&euro;</td>
+        <td class="acciones">
+          <a title="Editar datos del empleado" href="#">
+            <img src="./assets/imgs/icons/pencil.svg" alt="" class="btn btn-warning" data-id="${actual.id}">
+          </a>
+          <a title="Eliminar datos del empleado" href="#">
+            <img src="./assets/imgs/icons/trash-can.svg" alt="" class="btn btn-danger" data-id="${actual.id}">
+          </a>
+        </td>
+      </tr>
+    `
+  }, '')
+
+  renderCantidadEmpleados(empleados)
 }
 
 function renderPuestos() {
@@ -260,13 +267,28 @@ $formularioEmpleado["positionId"].addEventListener("change",ev=>{
 
 $botonAddUsuario.addEventListener("click",ev=>{
   $formularioEmpleado["salary"].disabled=true
+  $botonAdd.textContent = "Añadir"
   verListadoEmpleados(false)
 })
 
 $botonAdd.addEventListener("click",ev=>{
   ev.preventDefault()
-
+  
   let id=ev.target.dataset.id
+
+  const campos = ["name", "nif", "bornDate", "contractDate", "positionId"]
+  const dniRegex = /^\d{8}[A-Z]$/
+
+  if (campos.some(campo => !$formularioEmpleado[campo].value.trim())) {
+    alert("Todos los campos son obligatorios.");
+    return
+  }
+
+  if (!dniRegex.test($formularioEmpleado["nif"].value.trim())) {
+    alert("NIF con formato incorrecto.");
+    return
+  }
+
   if(id) {
     let empleado = empleados.find(el=>el.id==id)
     updateEmpleados(empleado.id)
